@@ -4,7 +4,7 @@ Create all tables for the 2468 database
 
 CREATE TABLE Participants (
     name            VARCHAR(20),
-    email           VARCHAR(50),
+    email           VARCHAR(50) PRIMARY KEY,
     birthday        DATE,
     school          VARCHAR(20),
     class_year      INTEGER,
@@ -24,10 +24,6 @@ CREATE TABLE Participants (
     q4_2_question   VARCHAR(300)
     );
 
-CREATE TABLE Editors (
-    editor_name    VARCHAR(20),
-    editor_email   VARCHAR(50)
-    );
 
 CREATE TABLE PublishedQuestions (
     text        VARCHAR(300),
@@ -36,20 +32,11 @@ CREATE TABLE PublishedQuestions (
     );
 
 CREATE TABLE Alumni (
-    email       VARCHAR(50),
-    occupation  VARCHAR(20)
+    email       VARCHAR(50) PRIMARY KEY,
+    occupation  VARCHAR(20),
+    name 	VARCHAR(20)
     );
 
-CREATE TABLE Reviews (
-    editor_email        VARCHAR(30),
-    survey_taker_email  VARCHAR(30)
-    );
-
-CREATE TABLE Publishes (
-    editor_email        VARCHAR(30),
-    link                VARCHAR(100),
-    date_published      DATE
-    );
 
 CREATE TABLE RespondsTo (
     responder_email VARCHAR(50),
@@ -59,8 +46,8 @@ CREATE TABLE RespondsTo (
     );
 
 CREATE TABLE ConnectsWith (
-    participant_email   VARCHAR(50),
-    alumni_email        VARCHAR(50),
+    participant_email   VARCHAR(50) PRIMARY KEY,
+    alumni_email        VARCHAR(50) PRIMARY KEY,
     link                VARCHAR(100)
     );
 

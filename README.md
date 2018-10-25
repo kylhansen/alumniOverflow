@@ -25,7 +25,7 @@
     * When finished, remove all data and drop tables by executing ".read dropschema.sql"
   
   __TO DO [Tanner, Christian, Jared]:__
-  * Add keys
+  * ~~Add keys~~
   * Connect to Python
   * Write scripts for incremental database design
   * Modify to make Q4 its own table (instead of the whole survey) -- for future, add tables for other questions as well
