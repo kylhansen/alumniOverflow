@@ -1,40 +1,76 @@
 <!DOCTYPE html>
+<script>
+    // Removes an item in one select box from the other select boxes
+    function removeSelected() {
+        var box1 = document.getElementById("box1");
+        var box2 = document.getElementById("box2");
+        var box3 = document.getElementById("box3");
+        var box4 = document.getElementById("box4");
+        
+        var id1 = box1.selectedIndex;
+        var id2 = box2.selectedIndex;
+        var id3 = box3.selectedIndex;
+        var id4 = box4.selectedIndex;
+
+        // All boxes and all values that have been selected
+        var boxes = [box1,box2,box3,box4];
+        var indices = [id1,id2,id3,id4];
+
+        // remove all selected items
+        for (var i = 0; i < boxes.length; i++){
+            var box = boxes[i];
+            var options = box.options;
+            for (var j=0; j<options.length; j++){
+                if (indices.includes(j)){
+                    box[j].disabled = true;
+                } else {
+                    box[j].disabled = false;
+                }
+            }
+        }
+    }
+</script>
 
 <h1> 
 Of the boxes you checked just now, which ones are you most likely to focus on in the next 5 years? Please select between 1 to 4 of these items:
 </h1>
 
-<form>
-<div class="1">
-    <select>
+
+
+<form method="POST">
+    
+    <select id="box1" onchange="removeSelected()">
         <option value="" selected disabled hidden>--1--</option>
-        <option>Test 1</option>
-        <option>Test 2</option>
+        {% for category in selected_categories %}
+            <option value="{{ category }}">{{ category }}</option>
+        {% endfor %}
     </select>
-</div>
 
-<div class="2">
-    <select>
+    <select id="box2" onchange="removeSelected()">
         <option value="" selected disabled hidden>--2--</option>
-        <option>Test 1</option>
-        <option>Test 2</option>
+        {% for category in selected_categories %}
+            <option value='{{ category }}'>{{ category }}</option>
+        {% endfor %}
     </select>
-</div>
 
-<div class="3">
-    <select>
+    <select id="box3" onchange="removeSelected()">
         <option value="" selected disabled hidden>--3--</option>
-        <option>Test 1</option>
-        <option>Test 2</option>
+        {% for category in selected_categories %}
+            <option value='{{ category }}'>{{ category }}</option>
+        {% endfor %}
+    </select>
+
+    <select id="box4" onchange="removeSelected()">
+        <option value="" selected disabled hidden>--4--</option>
+        {% for category in selected_categories %}
+            <option value='{{ category }}'>{{ category }}</option>
+        {% endfor %}
     </select>
 </div>
 
-<div class="4">
-    <select>
-        <option value="" selected disabled hidden>--4--</option>
-        <option>Test 1</option>
-        <option>Test 2</option>
-    </select>
-</div>
 <input type="submit" class="submitButton">
 </form>
+
+
+
+</body>
