@@ -3,21 +3,12 @@
 For items in the last question for which you selected "No", please write down a question or two:
 </h1>
 
-<form>
-  Item 1<br>
-  <textarea placeholder="Please write a question about the above topic" wrap="soft"></textarea><br>
-
-  Item 2<br>
-  <textarea placeholder="Please write a question about the above topic" wrap="soft"></textarea><br>
-
-  Item 3<br>
-  <textarea placeholder="Please write a question about the above topic" wrap="soft"></textarea><br>
-
-  Item 4<br>
-  <textarea placeholder="Please write a question about the above topic" wrap="soft"></textarea><br>
-  TODO: add ability to add another question box for multiple questions<br>
-
-  <input type="submit" class="SubmitButton">
+<form method="POST">
+    {% for category in question_categories %}
+        {{ category }}<br>
+        <textarea name='{{ category }}' placeholder="Please write a question about the above topic" wrap="soft"></textarea><br>
+    {% endfor %}
+    <input type="submit" class="SubmitButton">
 </form>
 
 
