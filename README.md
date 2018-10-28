@@ -50,6 +50,7 @@
 Fully functional pages:
   * survey_q#.html
     * the #th page which a visitor will view while taking a survey
+    
 Skeleton templates:
   * editor.html
     * the page for an editor to edit and publish new questions
