@@ -20,7 +20,8 @@
       python app.py
       ```  
   * survey.py
-    * To test the survey, run `app.py` as above and in a web browser navigate to "<local_host>/survey_q0.html".
+    * Testing:
+      * Run `app.py` as above and in a web browser navigate to "<local_host>/survey_q0.html".
       * Follow directions on screen and fill out the survey.
     * Bugs: 
       * Javascript for q3 doesn't work with flask to allow "disabling" other selected options as of right now, so that a user could select the same question multiple times. Could be changed to a checkbox system as in other questions, though we would need to make sure they can only select 4 at most.
