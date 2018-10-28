@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <script>
+    
+    // Sadly, when this runs, something happens so that the data isn't passed into flask.
+    //      If anyone knows how to fix this, that would be amazing. Then in each of the "select"
+    //      options in the form, append the line 'onchange="removeSelected()";' within the "select" tag.
     // Removes an item in one select box from the other select boxes
     function removeSelected() {
-        var box1 = document.getElementById("box1");
-        var box2 = document.getElementById("box2");
-        var box3 = document.getElementById("box3");
-        var box4 = document.getElementById("box4");
+        var box1 = document.getElementsByName("1")[0];
+        var box2 = document.getElementsByName("2")[0];
+        var box3 = document.getElementsByName("3")[0];
+        var box4 = document.getElementsByName("4")[0];
         
         var id1 = box1.selectedIndex;
         var id2 = box2.selectedIndex;
@@ -29,6 +33,13 @@
             }
         }
     }
+
+    // Sets the "value" of a box to be the item currently selected
+    function setValue(box) {
+        var value = box.options[box.selectedIndex].value;
+        box.value = value;
+    }
+
 </script>
 
 <h1> 
@@ -38,37 +49,36 @@ Of the boxes you checked just now, which ones are you most likely to focus on in
 
 
 <form method="POST">
-    
-    <select id="box1" onchange="removeSelected()">
+    <select name="1">
         <option value="" selected disabled hidden>--1--</option>
         {% for category in selected_categories %}
-            <option value="{{ category }}">{{ category }}</option>
+            <option value='{{ category }}'>{{ category }}</option>
         {% endfor %}
-    </select>
+    </select><br>
 
-    <select id="box2" onchange="removeSelected()">
+    <select name="2">
         <option value="" selected disabled hidden>--2--</option>
         {% for category in selected_categories %}
             <option value='{{ category }}'>{{ category }}</option>
         {% endfor %}
-    </select>
+    </select><br>
 
-    <select id="box3" onchange="removeSelected()">
+    <select name="3">
         <option value="" selected disabled hidden>--3--</option>
         {% for category in selected_categories %}
             <option value='{{ category }}'>{{ category }}</option>
         {% endfor %}
-    </select>
+    </select><br>
 
-    <select id="box4" onchange="removeSelected()">
+    <select name="4">
         <option value="" selected disabled hidden>--4--</option>
         {% for category in selected_categories %}
             <option value='{{ category }}'>{{ category }}</option>
         {% endfor %}
-    </select>
+    </select><br>
 </div>
 
-<input type="submit" class="submitButton">
+<input type="submit" value="Submit">
 </form>
 
 

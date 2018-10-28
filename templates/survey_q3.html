@@ -3,44 +3,17 @@
 For each of your selections, do you believe that you know all you need to know in order to achieve success in these items? Please select "Yes" or "No":
 </h1>
 
-<form>
-The first category that you selected.<br>
-<label class="switch"><input type="checkbox" id="togBtn">
-  <div class="slider round">
-    <span class="on">Yes</span>
-    <span class="off">No</span>
-  </div>
-</label><br>
-
-The second category that you selected.<br>
-<label class="switch"><input type="checkbox" id="togBtn">
-  <div class="slider round">
-    <span class="on">Yes</span>
-    <span class="off">No</span>
-  </div>
-</label><br>
-
-
-
-The third category that you selected.<br>
-<label class="switch"><input type="checkbox" id="togBtn">
-  <div class="slider round">
-    <span class="on">Yes</span>
-    <span class="off">No</span>
-  </div>
-</label><br>
-
-
-The fourth category that you selected.<br>
-<label class="switch"><input type="checkbox" id="togBtn">
-  <div class="slider round">
-    <span class="on">Yes</span>
-    <span class="off">No</span>
-  </div>
-</label><br>
-
-<input type="submit" class="submitButton">
-
+<form method="POST">
+    {% for category in top_categories %}
+        {{ category }}<br>
+        <label class="switch"><input type="checkbox" id='{{ category }}'>
+        <div class="slider round">
+            <span class="on">Yes</span>
+            <span class="off">No</span>
+        </div>
+        </label><br>
+    {% endfor %}
+    <input type="submit" class="submitButton">
 </form>
 
 <!--Style for toggle with text stolen from https://stackoverflow.com/questions/39846282/how-to-add-the-text-on-and-off-to-toggle-button answer by user Goombah -->

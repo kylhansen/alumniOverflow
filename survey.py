@@ -48,9 +48,20 @@ def survey_q1():
 
 @survey.route('/survey_q2', methods=["POST", "GET"])
 def survey_q2():
+    if request.method=="POST":
+        categories = list()
+        # Fetch the categories which were selected and put them in a list
+        for value in request.form.values():
+            categories.append(value)
+        session['top_categories'] = categories
+        return redirect(url_for('survey.survey_q3'))
     return render_template('survey_q2.html', selected_categories=session['categories'])    
 
-
+@survey.route('/survey_q3', methods=["POST", "GET"])
+def survey_q3():
+    if request.method == "POST":
+        return render_template('survey_q4.html')
+    return render_template('survey_q3.html', top_categories=session['top_categories'])
 
 
 
