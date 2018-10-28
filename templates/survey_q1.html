@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 
 <h1>
-    1. How do you think you will define success over your lifetime? Please check all boxes that fit your definition:
+    How do you think you will define success over your lifetime? Please check all boxes that fit your definition:
 </h1>
 
 <!-- The following table displays the "categories" from the "Appreciate U" survey -->
 
-<form>
+<form method="POST">
     <h3>Professional/Career</h3>
-    
-    <input type="checkbox" name="Q1">This is a test<br>
-    <input type="checkbox" name="Q2">This is another test<br>
-
+        {% for category in professional %}
+            <input type="checkbox" name='{{ category }}' value='true'>{{ category }}<br>
+        {% endfor %}
     <h3>Personal</h3>
-
-    <input type="checkbox" name="Q1">This is yet another test<br>
-    <input type="checkbox" name="Q2">This is not a test (jk)<br>
-
+        {% for category in personal %}
+            <input type="checkbox" name='{{ category }}' value='true'>{{ category }}<br>
+        {% endfor %}
     <input type="submit" value="Submit">
 </form>

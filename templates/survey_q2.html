@@ -1,40 +1,86 @@
 <!DOCTYPE html>
+<script>
+    
+    // Sadly, when this runs, something happens so that the data isn't passed into flask.
+    //      If anyone knows how to fix this, that would be amazing. Then in each of the "select"
+    //      options in the form, append the line 'onchange="removeSelected()";' within the "select" tag.
+    // Removes an item in one select box from the other select boxes
+    function removeSelected() {
+        var box1 = document.getElementsByName("1")[0];
+        var box2 = document.getElementsByName("2")[0];
+        var box3 = document.getElementsByName("3")[0];
+        var box4 = document.getElementsByName("4")[0];
+        
+        var id1 = box1.selectedIndex;
+        var id2 = box2.selectedIndex;
+        var id3 = box3.selectedIndex;
+        var id4 = box4.selectedIndex;
+
+        // All boxes and all values that have been selected
+        var boxes = [box1,box2,box3,box4];
+        var indices = [id1,id2,id3,id4];
+
+        // remove all selected items
+        for (var i = 0; i < boxes.length; i++){
+            var box = boxes[i];
+            var options = box.options;
+            for (var j=0; j<options.length; j++){
+                if (indices.includes(j)){
+                    box[j].disabled = true;
+                } else {
+                    box[j].disabled = false;
+                }
+            }
+        }
+    }
+
+    // Sets the "value" of a box to be the item currently selected
+    function setValue(box) {
+        var value = box.options[box.selectedIndex].value;
+        box.value = value;
+    }
+
+</script>
 
 <h1> 
 Of the boxes you checked just now, which ones are you most likely to focus on in the next 5 years? Please select between 1 to 4 of these items:
 </h1>
 
-<form>
-<div class="1">
-    <select>
+
+
+<form method="POST">
+    <select name="1">
         <option value="" selected disabled hidden>--1--</option>
-        <option>Test 1</option>
-        <option>Test 2</option>
-    </select>
-</div>
+        {% for category in selected_categories %}
+            <option value='{{ category }}'>{{ category }}</option>
+        {% endfor %}
+    </select><br>
 
-<div class="2">
-    <select>
+    <select name="2">
         <option value="" selected disabled hidden>--2--</option>
-        <option>Test 1</option>
-        <option>Test 2</option>
-    </select>
-</div>
+        {% for category in selected_categories %}
+            <option value='{{ category }}'>{{ category }}</option>
+        {% endfor %}
+    </select><br>
 
-<div class="3">
-    <select>
+    <select name="3">
         <option value="" selected disabled hidden>--3--</option>
-        <option>Test 1</option>
-        <option>Test 2</option>
-    </select>
+        {% for category in selected_categories %}
+            <option value='{{ category }}'>{{ category }}</option>
+        {% endfor %}
+    </select><br>
+
+    <select name="4">
+        <option value="" selected disabled hidden>--4--</option>
+        {% for category in selected_categories %}
+            <option value='{{ category }}'>{{ category }}</option>
+        {% endfor %}
+    </select><br>
 </div>
 
-<div class="4">
-    <select>
-        <option value="" selected disabled hidden>--4--</option>
-        <option>Test 1</option>
-        <option>Test 2</option>
-    </select>
-</div>
-<input type="submit" class="submitButton">
+<input type="submit" value="Submit">
 </form>
+
+
+
+</body>
