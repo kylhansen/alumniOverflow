@@ -42,7 +42,7 @@
   * ~~Add keys~~
   * Connect to Python
   * Write scripts for incremental database design
-  *~~Modify to make Q4 its own table (instead of the whole survey) -- for future, add tables for other questions as well~~
+  * ~~Modify to make Q4 its own table (instead of the whole survey) -- for future, add tables for other questions as well~~
   * Create a test dataset
   * Make an automated test
 
