@@ -3,7 +3,8 @@ Create all tables for the 2468 database
 */
 
 CREATE TABLE Participants (
-    name            VARCHAR(20),
+    firstname            VARCHAR(20),
+    lastname VARCHAR(20),
     email           VARCHAR(50) PRIMARY KEY,
     birthday        DATE,
     school          VARCHAR(20),
