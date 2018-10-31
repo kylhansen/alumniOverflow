@@ -1,17 +1,17 @@
-from flask import Flask
-#from alumniOverflow.survey_q4 import survey_q4
+from flask import Flask, render_template, url_for
 from survey import survey
+from search import search
 
 app = Flask(__name__)
 app.secret_key = 'alumniOverflow'
+app.url_map.strict_slashes = False
 
-#app.register_blueprint(survey_q4)
 app.register_blueprint(survey)
 app.register_blueprint(search)
 
 @app.route('/')
 def home():
-    return ("<a href='{{ survey }}'>Link to survey</a>", survey=url_for(survey.survey_q0))
+    return "<a href=" + url_for('survey.survey_q0') + ">Link to survey</a>"
 
 if __name__ == '__main__':
     app.run()
