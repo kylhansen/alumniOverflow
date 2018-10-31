@@ -11,7 +11,7 @@ app.register_blueprint(search)
 
 @app.route('/')
 def home():
-    return "<a href=" + url_for('survey.survey_q0') + ">Link to survey</a>"
+    return "<a href=" + url_for('survey.survey_q0') + ">Link to survey</a><br><a href=" + url_for('search.search_questions')  + ">Link to view questions</a>"
 
 if __name__ == '__main__':
     app.run()
