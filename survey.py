@@ -3,6 +3,7 @@
 # Serves a page that laets a client answer the initial survey 
 # 
 
+import sqlite3
 from flask import Blueprint, session, render_template, request, redirect, url_for
 
 survey = Blueprint('survey', __name__, template_folder='templates')
@@ -21,8 +22,15 @@ def survey_q0():
         grad_year = request.form['graddate']
         majors = request.form['majors']
 
-        # Add key (currently just email) to the session
+        # Add all keys to the session with the user input data 
+        session['first_name'] = first_name
+        session['last_name'] = last_name
         session['email'] = email
+        session['dob'] = dob
+        session ['institution'] = institution
+        session['grad_year'] = grad_year
+        session['majors'] = majors
+        
         return redirect(url_for('survey.survey_q1'))
 
     # Render demographic/personal information question
@@ -98,12 +106,38 @@ def survey_q4():
             q_and_a[key] = value
         # TODO: pass all relevant information from the session off to the database
         session['q_and_a'] = q_and_a
+        
+        #loads all data into database
+        load_db()
 
         # Send the user to the "thank you" page
         return render_template("survey_end.html")
-
+    
+    
     # Render question 4
     return render_template("survey_q4.html", question_categories=session['question_categories'])
+
+
+
+    
+def load_db():
+    #opens connection with the local database, and creates a cursor that allows commands to be sent to the database
+    conn = sqlite3.connect('database/2468')
+    c = conn.cursor()
+   
+
+    #list of data to be inserted into participants table
+    insert_list_par = [(str(session['first_name'].encode('ascii','ignore')), str(session['last_name'].encode('ascii','ignore')), str(session['email'].encode('ascii','ignore')),
+                         str(session['dob'].encode('ascii','ignore')), str(session['institution'].encode('ascii','ignore')), str(session['grad_year'].encode('ascii','ignore')),
+                         str(session['majors'].encode('ascii','ignore')))]
+        
+    #saves command that inserts user input into the Participants table of the local database to be excuted later at end of function call
+    c.executemany('INSERT INTO Participants VALUES (?,?,?,?,?,?,?)', insert_list_par)
+              
+
+    #sends all commands in one swell foop so it is atomic, and closes local database connection
+    conn.commit()
+    conn.close()
 
 
 
