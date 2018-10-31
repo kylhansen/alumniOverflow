@@ -3,19 +3,20 @@ Create all tables for the 2468 database
 */
 
 CREATE TABLE Participants (
-    name            VARCHAR(20),
+    firstname            VARCHAR(20),
+    lastname VARCHAR(20),
     email           VARCHAR(50) PRIMARY KEY,
     birthday        DATE,
     school          VARCHAR(20),
     class_year      INTEGER,
-    major           VARCHAR(20),
+    major           VARCHAR(20)
     );
 
 CREATE TABLE QuestionFour (
 	q4_1_category INTEGER,
 	q4_1_question VARCHAR(300),
 	q4_2_category INTEGER,
-	q4_2_category VARCHAR(300)
+	q4_2_question VARCHAR(300)
 );
 
 CREATE TABLE PublishedQuestions (
@@ -39,7 +40,8 @@ CREATE TABLE RespondsTo (
     );
 
 CREATE TABLE ConnectsWith (
-    participant_email   VARCHAR(50) PRIMARY KEY,
-    alumni_email        VARCHAR(50) PRIMARY KEY,
-    link                VARCHAR(100)
+    participant_email   VARCHAR(50),
+    alumni_email        VARCHAR(50),
+    link                VARCHAR(100),
+	PRIMARY KEY(participant_email, alumni_email)
     );
