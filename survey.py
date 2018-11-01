@@ -127,9 +127,9 @@ def load_db():
    
 
     #list of data to be inserted into participants table
-    insert_list_par = [(str(session['first_name'].encode('ascii','ignore')), str(session['last_name'].encode('ascii','ignore')), str(session['email'].encode('ascii','ignore')),
-                         str(session['dob'].encode('ascii','ignore')), str(session['institution'].encode('ascii','ignore')), str(session['grad_year'].encode('ascii','ignore')),
-                         str(session['majors'].encode('ascii','ignore')))]
+    insert_list_par = [(str(session['first_name']), str(session['last_name']), str(session['email']),
+                         str(session['dob']), str(session['institution']), str(session['grad_year']),
+                         str(session['majors']))]
         
     #saves command that inserts user input into the Participants table of the local database to be excuted later at end of function call
     c.executemany('INSERT INTO Participants VALUES (?,?,?,?,?,?,?)', insert_list_par)
