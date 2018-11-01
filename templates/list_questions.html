@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+
+<table>
+{% for category, in result.items() %}
+  <tr>
+      <th> {{ category }} </th>
+      <td> {{ list_of_questions }} </td>
+  </tr>
+{% endfor %}
+</table>
