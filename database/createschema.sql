@@ -13,10 +13,9 @@ CREATE TABLE Participants (
     );
 
 CREATE TABLE QuestionFour (
-	q4_1_category INTEGER,
-	q4_1_question VARCHAR(300),
-	q4_2_category INTEGER,
-	q4_2_question VARCHAR(300)
+	email VARCHAR(50),
+  	question VARCHAR(300),
+  	category VARCHAR(50)	
 );
 
 CREATE TABLE PublishedQuestions (
