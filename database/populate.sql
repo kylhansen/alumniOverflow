@@ -6,11 +6,11 @@ INSERT INTO Participants VALUES ("schlop","linksy","schlop@email","1962-01-01","
 INSERT INTO Participants VALUES ("Bingbong","low","bingbong@email","2050-06-13","UCSD","2071","Reading");
 
 /* Fills QuestionFour table */
-INSERT INTO QuestionFour VALUES ("1","I need help","2","How does one make money");
-INSERT INTO QuestionFour VALUES ("1","Is money green","2","will we use physical money in the furure");
-INSERT INTO QuestionFour VALUES ("2","how do I interview","3","What are some interview tips");
-INSERT INTO QuestionFour VALUES ("2","how do loans work","4","should I take any loans");
-INSERT INTO QuestionFour VALUES ("3","Is time actually an illusion","4","how do you do block comments in python");
+INSERT INTO QuestionFour VALUES ("bob@email","How does one make money","finance");
+INSERT INTO QuestionFour VALUES ("may@email","Is money green","finance");
+INSERT INTO QuestionFour VALUES ("rudy@email","What are some interview tips","job searching");
+INSERT INTO QuestionFour VALUES ("schlop@email","how do loans work","finance");
+INSERT INTO QuestionFour VALUES ("bingbong@email","Is time actually an illusion","life tips");
 
 /* Fills PublishedQuestions table */
 INSERT INTO PublishedQuestions VALUES ("How do loans work","thisisafakeline.com","finance");
