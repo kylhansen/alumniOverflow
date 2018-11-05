@@ -138,17 +138,23 @@ def load_db():
     #inserts data into question one table
     for cat in session['categories']:
        insert_list_q1 = [session['email'], cat] 
-       c.executemany('INSERT INTO QuestionOne VALUES (?,?)', insert_list_q1)
+       print("this is really us")
+       print(cat)
+       print(insert_list_q1)
+       c.execute('INSERT INTO QuestionOne VALUES (?,?)', insert_list_q1)
+       insert_list_q1 = list()
        
     #inserts data into question two table
     for cat in session['top_categories']:
        insert_list_q2 = [session['email'], cat] 
-       c.executemany('INSERT INTO QuestionTwo VALUES (?,?)', insert_list_q2)
+       c.execute('INSERT INTO QuestionTwo VALUES (?,?)', insert_list_q2)
+       insert_list_q2 = list()
        
     #inserts data into question three table
     for cat in session['question_categories']:
        insert_list_q3 = [session['email'], cat] 
-       c.executemany('INSERT INTO QuestionThree VALUES (?,?)', insert_list_q3)
+       c.execute('INSERT INTO QuestionThree VALUES (?,?)', insert_list_q3)
+       insert_list_q3 = list()
        
 
     #inserts data into question 4 table
