@@ -39,3 +39,25 @@ INSERT INTO ConnectsWith VALUES ("may@email","oldwoman@email","letsconnect.com")
 INSERT INTO ConnectsWith VALUES ("rudy@email","iamabillionair@email","letsconnect.com");
 INSERT INTO ConnectsWith VALUES ("schlop@email","heycallmerich@email","letsconnect.com");
 INSERT INTO ConnectsWith VALUES ("bingbong@email","meme@email","letsconnect.com");
+
+/* Fills QuestionOne table */
+INSERT INTO QuestionOne VALUES ("bob@email","finance");
+insert into QuestionOne values ("rudy@email","buisness");
+insert into QuestionOne values ("schlop@email","life advice");
+insert into QuestionOne values ("bingbong@email","history");
+insert into QuestionOne values ("may@email","loans");
+
+/* Fills QuestionTwo table*/
+insert into QuestionTwo values ("bob@email","loans");
+insert into QuestionTwo values ("rudy@email","history");
+insert into QuestionTwo values ("schlop@email","finace");
+insert into QuestionTwo values ("bingbong@email","life advice");
+insert into QuestionTwo values ("may@email","buisness");
+
+/* Fills into QuestionThree table*/
+insert into QuestionThree values ("bob@email","computer science");
+insert into QuestionThree values ("rudy@email","data analytics");
+insert into QuestionThree values ("schlop@email","english");
+insert into QuestionThree values ("bingbong@email","math");
+insert into QuestionThree values ("may@email","chemistry");
+
