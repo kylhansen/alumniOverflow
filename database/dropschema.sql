@@ -13,3 +13,5 @@ DROP TABLE RespondsTo;
 DROP TABLE QuestionFour;
 
 DROP TABLE ConnectsWith;
+
+DROP TABLE QuestionOne;
