@@ -133,7 +133,25 @@ def load_db():
         
     #saves command that inserts user input into the Participants table of the local database to be excuted later at end of function call
     c.executemany('INSERT INTO Participants VALUES (?,?,?,?,?,?,?)', insert_list_par)
+    
+    
+    #inserts data into question one table
+    for cat in session['categories']:
+       insert_list_q1 = [session['email'], cat] 
+       c.executemany('INSERT INTO QuestionOne VALUES (?,?)', insert_list_q1)
+       
+    #inserts data into question two table
+    for cat in session['top_categories']:
+       insert_list_q2 = [session['email'], cat] 
+       c.executemany('INSERT INTO QuestionTwo VALUES (?,?)', insert_list_q2)
+       
+    #inserts data into question three table
+    for cat in session['question_categories']:
+       insert_list_q3 = [session['email'], cat] 
+       c.executemany('INSERT INTO QuestionThree VALUES (?,?)', insert_list_q3)
+       
 
+    #inserts data into question 4 table
     insert_list_q4 = []
     c_and_q = session['c_and_q']
     for category in c_and_q:
