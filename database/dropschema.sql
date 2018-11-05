@@ -19,3 +19,5 @@ DROP TABLE QuestionThree;
 DROP TABLE QuestionFour;
 
 DROP TABLE ConnectsWith;
+
+DROP TABLE QuestionOne;

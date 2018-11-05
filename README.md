@@ -31,20 +31,22 @@
   * Create/enter the database called "2468" by typing the following command
     ```
     sqlite3 2468
+    
     ```
-  * To test, for now, do the following:
+  * To test, do the following:
     * From the "database" directory, enter "sqlite3 2468" database
     * Execute ".read createschema.sql" to create tables
-    * Try inserting and deleting various things in the database
+    * Execute ".read populate.sql" to fill tables
+    * Execute ".read dropschema.sql" to empty tables
     * When finished, remove all data and drop tables by executing ".read dropschema.sql"
   
   __TO DO [Tanner, Christian, Jared]:__
   * ~~Add keys~~
-  * Connect to Python
+  * ~~Connect to Python~~
   * Write scripts for incremental database design
   * ~~Modify to make Q4 its own table (instead of the whole survey) -- for future, add tables for other questions as well~~
-  * Create a test dataset
-  * Make an automated test
+  * ~~Create a test dataset~~
+  
 
 # HTML TEMPLATES
 Fully functional pages:
