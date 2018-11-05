@@ -15,7 +15,7 @@ CREATE TABLE Participants (
 CREATE TABLE QuestionFour (
 	
 	email VARCHAR(50),
-	q4_category INTEGER,
+	q4_category VARCHAR(30),
 	q4_question VARCHAR(300)
 	
 	
