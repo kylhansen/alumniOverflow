@@ -12,14 +12,26 @@ CREATE TABLE Participants (
     major           VARCHAR(20)
     );
 
+CREATE TABLE QuestionOne (
+    email VARCHAR(50),
+    category VARCHAR(30)
+    ); 
+
+CREATE TABLE QuestionTwo (
+    email VARCHAR(50),
+    category VARCHAR(30)
+    ); 	
+
+CREATE TABLE QuestionThree (
+    email VARCHAR(50),
+    category VARCHAR(30)
+    );
+
 CREATE TABLE QuestionFour (
-	
-	email VARCHAR(50),
-	q4_category VARCHAR(30),
-	q4_question VARCHAR(300)
-	
-	
-);
+    email VARCHAR(50),
+    q4_category VARCHAR(30),
+    q4_question VARCHAR(300)
+    );
 
 CREATE TABLE PublishedQuestions (
     text        VARCHAR(300),
@@ -30,9 +42,8 @@ CREATE TABLE PublishedQuestions (
 CREATE TABLE Alumni (
     email       VARCHAR(50) PRIMARY KEY,
     occupation  VARCHAR(20),
-    name 	VARCHAR(20)
+    name     VARCHAR(20)
     );
-
 
 CREATE TABLE RespondsTo (
     responder_email VARCHAR(50),
@@ -45,5 +56,5 @@ CREATE TABLE ConnectsWith (
     participant_email   VARCHAR(50),
     alumni_email        VARCHAR(50),
     link                VARCHAR(100),
-	PRIMARY KEY(participant_email, alumni_email)
+    PRIMARY KEY(participant_email, alumni_email)
     );
