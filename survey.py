@@ -98,14 +98,14 @@ def survey_q3():
 @survey.route('/survey_q4', methods=["POST", "GET"])
 def survey_q4():
     if request.method=="POST":
-        q_and_a = dict()
-        # Fetch the question/answer pair for the response
-        for key,value in request.form.items():
-            print(key)
-            print(value)
-            q_and_a[key] = value
+        c_and_q = dict()
+        # Fetch the category/question pair for the response
+        for category,question in request.form.items():
+            print(category)
+            print(question)
+            c_and_q[category] = question
         # TODO: pass all relevant information from the session off to the database
-        session['q_and_a'] = q_and_a
+        session['c_and_q'] = c_and_q
         
         #loads all data into database
         load_db()
@@ -133,7 +133,13 @@ def load_db():
         
     #saves command that inserts user input into the Participants table of the local database to be excuted later at end of function call
     c.executemany('INSERT INTO Participants VALUES (?,?,?,?,?,?,?)', insert_list_par)
-              
+
+    insert_list_q4 = []
+    c_and_q = session['c_and_q']
+    for category in c_and_q:
+        insert_list_q4.append((session['email'],c_and_q[category],category))
+
+    c.executemany('INSERT INTO QuestionFour VALUES (?,?,?)', insert_list_q4)
 
     #sends all commands in one swell foop so it is atomic, and closes local database connection
     conn.commit()
