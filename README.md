@@ -33,7 +33,7 @@
     sqlite3 2468
     
     ```
-  * To test, for now, do the following:
+  * To test, do the following:
     * From the "database" directory, enter "sqlite3 2468" database
     * Execute ".read createschema.sql" to create tables
     * Execute ".read populate.sql" to fill tables
