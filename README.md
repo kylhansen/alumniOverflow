@@ -1,6 +1,8 @@
 # alumniOverflow
 
 # TODO:
+  * Create global DATABASE accessing functions (such as global DB_NAME, DB_CONNECT, and maybe some other functions).
+    * Should there be a python script specifically dedicated to commonly executed SQL commands?
   * Design Database [Christian, Kyle]
   * Fill out TODO
   * Connect sqlite with python [Christian,Jared,Tanner]
