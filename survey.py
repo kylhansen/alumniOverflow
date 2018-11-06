@@ -98,14 +98,14 @@ def survey_q3():
 @survey.route('/survey_q4', methods=["POST", "GET"])
 def survey_q4():
     if request.method=="POST":
-        q_and_a = dict()
-        # Fetch the question/answer pair for the response
-        for key,value in request.form.items():
-            print(key)
-            print(value)
-            q_and_a[key] = value
+        c_and_q = dict()
+        # Fetch the category/question pair for the response
+        for category,question in request.form.items():
+            print(category)
+            print(question)
+            c_and_q[category] = question
         # TODO: pass all relevant information from the session off to the database
-        session['q_and_a'] = q_and_a
+        session['c_and_q'] = c_and_q
         
         #loads all data into database
         load_db()
@@ -127,13 +127,43 @@ def load_db():
    
 
     #list of data to be inserted into participants table
-    insert_list_par = [(str(session['first_name'].encode('ascii','ignore')), str(session['last_name'].encode('ascii','ignore')), str(session['email'].encode('ascii','ignore')),
-                         str(session['dob'].encode('ascii','ignore')), str(session['institution'].encode('ascii','ignore')), str(session['grad_year'].encode('ascii','ignore')),
-                         str(session['majors'].encode('ascii','ignore')))]
+    insert_list_par = [(str(session['first_name']), str(session['last_name']), str(session['email']),
+                         str(session['dob']), str(session['institution']), str(session['grad_year']),
+                         str(session['majors']))]
         
     #saves command that inserts user input into the Participants table of the local database to be excuted later at end of function call
     c.executemany('INSERT INTO Participants VALUES (?,?,?,?,?,?,?)', insert_list_par)
-              
+    
+    
+    #inserts data into question one table
+    for cat in session['categories']:
+       insert_list_q1 = [session['email'], cat] 
+       print("this is really us")
+       print(cat)
+       print(insert_list_q1)
+       c.execute('INSERT INTO QuestionOne VALUES (?,?)', insert_list_q1)
+       insert_list_q1 = list()
+       
+    #inserts data into question two table
+    for cat in session['top_categories']:
+       insert_list_q2 = [session['email'], cat] 
+       c.execute('INSERT INTO QuestionTwo VALUES (?,?)', insert_list_q2)
+       insert_list_q2 = list()
+       
+    #inserts data into question three table
+    for cat in session['question_categories']:
+       insert_list_q3 = [session['email'], cat] 
+       c.execute('INSERT INTO QuestionThree VALUES (?,?)', insert_list_q3)
+       insert_list_q3 = list()
+       
+
+    #inserts data into question 4 table
+    insert_list_q4 = []
+    c_and_q = session['c_and_q']
+    for category in c_and_q:
+        insert_list_q4.append((session['email'],category,c_and_q[category]))
+
+    c.executemany('INSERT INTO QuestionFour VALUES (?,?,?)', insert_list_q4)
 
     #sends all commands in one swell foop so it is atomic, and closes local database connection
     conn.commit()

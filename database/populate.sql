@@ -6,11 +6,11 @@ INSERT INTO Participants VALUES ("schlop","linksy","schlop@email","1962-01-01","
 INSERT INTO Participants VALUES ("Bingbong","low","bingbong@email","2050-06-13","UCSD","2071","Reading");
 
 /* Fills QuestionFour table */
-INSERT INTO QuestionFour VALUES ("bob@email","How does one make money","finance");
-INSERT INTO QuestionFour VALUES ("may@email","Is money green","finance");
-INSERT INTO QuestionFour VALUES ("rudy@email","What are some interview tips","job searching");
-INSERT INTO QuestionFour VALUES ("schlop@email","how do loans work","finance");
-INSERT INTO QuestionFour VALUES ("bingbong@email","Is time actually an illusion","life tips");
+INSERT INTO QuestionFour VALUES ("bob@email","finance","How does one make money");
+INSERT INTO QuestionFour VALUES ("may@email","finance","Is money green");
+INSERT INTO QuestionFour VALUES ("rudy@email","job search","What are some interview tips");
+INSERT INTO QuestionFour VALUES ("schlop@email","finance","how do loans work");
+INSERT INTO QuestionFour VALUES ("bingbong@email","life tips","Is time actually an illusion");
 
 /* Fills PublishedQuestions table */
 INSERT INTO PublishedQuestions VALUES ("How do loans work","thisisafakeline.com","finance");
@@ -39,3 +39,25 @@ INSERT INTO ConnectsWith VALUES ("may@email","oldwoman@email","letsconnect.com")
 INSERT INTO ConnectsWith VALUES ("rudy@email","iamabillionair@email","letsconnect.com");
 INSERT INTO ConnectsWith VALUES ("schlop@email","heycallmerich@email","letsconnect.com");
 INSERT INTO ConnectsWith VALUES ("bingbong@email","meme@email","letsconnect.com");
+
+/* Fills QuestionOne table */
+INSERT INTO QuestionOne VALUES ("bob@email","finance");
+insert into QuestionOne values ("rudy@email","buisness");
+insert into QuestionOne values ("schlop@email","life advice");
+insert into QuestionOne values ("bingbong@email","history");
+insert into QuestionOne values ("may@email","loans");
+
+/* Fills QuestionTwo table*/
+insert into QuestionTwo values ("bob@email","loans");
+insert into QuestionTwo values ("rudy@email","history");
+insert into QuestionTwo values ("schlop@email","finace");
+insert into QuestionTwo values ("bingbong@email","life advice");
+insert into QuestionTwo values ("may@email","buisness");
+
+/* Fills into QuestionThree table*/
+insert into QuestionThree values ("bob@email","computer science");
+insert into QuestionThree values ("rudy@email","data analytics");
+insert into QuestionThree values ("schlop@email","english");
+insert into QuestionThree values ("bingbong@email","math");
+insert into QuestionThree values ("may@email","chemistry");
+
