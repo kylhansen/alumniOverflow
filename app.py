@@ -1,6 +1,7 @@
 from flask import Flask, render_template, url_for
 from survey import survey
 from search import search
+from question_view import question_view
 
 app = Flask(__name__)
 app.secret_key = 'alumniOverflow'
@@ -8,6 +9,7 @@ app.url_map.strict_slashes = False
 
 app.register_blueprint(survey)
 app.register_blueprint(search)
+app.register_blueprint(question_view)
 
 @app.route('/')
 def home():
