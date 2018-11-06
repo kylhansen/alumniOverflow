@@ -13,6 +13,12 @@
     ```
     This will create a database file "2468" in the database directory
     
+  * From the "database" directory, enter "sqlite3 2468" database
+  * Execute ".read createschema.sql" to create tables
+  * Execute ".read populate.sql" to fill tables
+  * Execute ".read dropschema.sql" to empty tables
+  * When finished, remove all data and drop tables by executing ".read dropschema.sql"
+    
 # PYTHON
   * app.py
     * To begin a local session, in terminal execute the following command from the main directory:
@@ -32,14 +38,7 @@
     ```
     sqlite3 2468
     
-    ```
-  * To test, do the following:
-    * From the "database" directory, enter "sqlite3 2468" database
-    * Execute ".read createschema.sql" to create tables
-    * Execute ".read populate.sql" to fill tables
-    * Execute ".read dropschema.sql" to empty tables
-    * When finished, remove all data and drop tables by executing ".read dropschema.sql"
-  
+    ```  
   __TO DO [Tanner, Christian, Jared]:__
   * ~~Add keys~~
   * ~~Connect to Python~~
