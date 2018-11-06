@@ -27,12 +27,22 @@
       ```  
   * survey.py
     * Testing:
-      * Run `app.py` as above and in a web browser navigate to "<local_host>/survey_q0.html".
+      * Run `app.py` as above and in a web browser navigate to `<local_host>/survey_q0.html`.
       * Follow directions on screen and fill out the survey.
     * Bugs: 
-      * Javascript for q3 doesn't work with flask to allow "disabling" other selected options as of right now, so that a user could select the same question multiple times. Could be changed to a checkbox system as in other questions, though we would need to make sure they can only select 4 at most.
       * Need to force some questions to be answered (like email, and some from q3)
-    
+      * When selecting top 4 categories, allows for selecting an empty category (need to disable base option)
+
+  * list_questions.py
+    * Purpose: to list all questions and categories in the database
+    * Testing:
+      * Run `app.py` as above, and in a web browser navigate to `<local_host>/list_questions/<user>` where `<user>` can be any string, but the only meaningful strings should be "moderator" and "expert". Alternatively, from the home page click "view all questions", which will navigae to the page without any `<user>` variable declared.
+      * Try putting in various strings for `<user>` and see the greeting at the top of the page change
+      * A list of test categories and test questions should display. Click on any question to be taken to the next page, which is currently a template, which the `<user>` variable has been passed into. Verify this by checking the message that shows up.
+    * Bugs:
+      * Unknown as of right now.
+    * TODO:
+      * Connect to database and fetch data from there (currently data is hardcoded in)
 # DATABASE
   * Create/enter the database called "2468" by typing the following command
     ```
