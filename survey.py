@@ -27,9 +27,11 @@ def survey_q0():
         session['last_name'] = last_name
         session['email'] = email
         session['dob'] = dob
-        session ['institution'] = institution
+        session['institution'] = institution
         session['grad_year'] = grad_year
         session['majors'] = majors
+
+        session['link'] #This needs to be made
         
         return redirect(url_for('survey.survey_q1'))
 
@@ -161,9 +163,9 @@ def load_db():
     insert_list_q4 = []
     c_and_q = session['c_and_q']
     for category in c_and_q:
-        insert_list_q4.append((session['email'],category,c_and_q[category]))
+        insert_list_q4.append((session['email'],category,c_and_q[category],"False",session['link']))
 
-    c.executemany('INSERT INTO QuestionFour VALUES (?,?,?)', insert_list_q4)
+    c.executemany('INSERT INTO QuestionFour VALUES (?,?,?,?,?)', insert_list_q4)
 
     #sends all commands in one swell foop so it is atomic, and closes local database connection
     conn.commit()

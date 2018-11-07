@@ -29,14 +29,10 @@ CREATE TABLE QuestionThree (
 
 CREATE TABLE QuestionFour (
     email VARCHAR(50),
-    q4_category VARCHAR(30),
-    q4_question VARCHAR(300)
-    );
-
-CREATE TABLE PublishedQuestions (
-    text        VARCHAR(300),
-    link        VARCHAR(100),
-    category    VARCHAR(30)
+    category VARCHAR(30),
+    question VARCHAR(300),
+	published BOOLEAN,
+	link VARCHAR(100)
     );
 
 CREATE TABLE Alumni (
