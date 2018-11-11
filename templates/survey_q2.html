@@ -47,28 +47,28 @@ Of the boxes you checked just now, which ones are you most likely to focus on in
 
 <form method="POST">
     <select name="1" onchange="removeSelected();">
-        <option value="" selected hidden>--1--</option>
+        <option value="" selected hidden disabled>--1--</option>
         {% for category in selected_categories %}
             <option value='{{ category }}'>{{ category }}</option>
         {% endfor %}
     </select><br>
 
     <select name="2" onchange="removeSelected();">
-        <option value="" selected hidden>--2--</option>
+        <option value="" selected hidden disabled>--2--</option>
         {% for category in selected_categories %}
             <option value='{{ category }}'>{{ category }}</option>
         {% endfor %}
     </select><br>
 
     <select name="3" onchange="removeSelected();">
-        <option value="" selected hidden>--3--</option>
+        <option value="" selected hidden disabled>--3--</option>
         {% for category in selected_categories %}
             <option value='{{ category }}'>{{ category }}</option>
         {% endfor %}
     </select><br>
 
     <select name="4" onchange="removeSelected();">
-        <option value="" selected hidden>--4--</option>
+        <option value="" selected hidden disabled>--4--</option>
         {% for category in selected_categories %}
             <option value='{{ category }}'>{{ category }}</option>
         {% endfor %}
