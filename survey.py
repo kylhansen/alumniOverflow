@@ -40,27 +40,24 @@ def survey_q0():
 
 @survey.route('/survey_q1', methods=["POST", "GET"])
 def survey_q1():
-    # The survey categories which are currently hardcoded, but ought to be replaced by the actual categories
-    professional_categories = ['Test 1', 'Test 2', 'Test 3']
-    personal_categories = ['Another Test 1','Another Test 2','Another Test 3']
+    # Read in the categories present in the database
+    categories = get_categories()
 
     # Process submission and send user to next page
     if request.method=="POST":
         # Fetch the categories which the user selected and put them in a list
-        categories = list()
+        selected_categories = list()
         for key in request.form.keys():
-            print(key)
-            print(request.form[key])
             if request.form[key]:
-                categories.append(key)
+                selected_categories.append(key)
         # Save all categories selected
-        session['categories'] = categories
+        session['categories'] = selected_categories
 
         # Send the user to the next question
         return redirect(url_for('survey.survey_q2'))
 
     # Render question 1
-    return render_template('survey_q1.html', professional = professional_categories, personal = personal_categories)
+    return render_template('survey_q1.html', categories = categories)
 
 @survey.route('/survey_q2', methods=["POST", "GET"])
 def survey_q2():
@@ -103,8 +100,6 @@ def survey_q4():
         c_and_q = dict()
         # Fetch the category/question pair for the response
         for category,question in request.form.items():
-            print(category)
-            print(question)
             c_and_q[category] = question
         # TODO: pass all relevant information from the session off to the database
         session['c_and_q'] = c_and_q
@@ -115,13 +110,20 @@ def survey_q4():
         # Send the user to the "thank you" page
         return render_template("survey_end.html")
     
-    
     # Render question 4
     return render_template("survey_q4.html", question_categories=session['question_categories'])
 
 
+def get_categories():
+    conn = sqlite3.connect('database/2468')
+    c = conn.cursor()
 
-    
+    categories = set()
+    for row in c.execute('SELECT q4_category FROM QuestionFour'):
+        categories.add(row[0])
+    return categories
+
+
 def load_db():
     #opens connection with the local database, and creates a cursor that allows commands to be sent to the database
     conn = sqlite3.connect('database/2468')
@@ -140,9 +142,6 @@ def load_db():
     #inserts data into question one table
     for cat in session['categories']:
        insert_list_q1 = [session['email'], cat] 
-       print("this is really us")
-       print(cat)
-       print(insert_list_q1)
        c.execute('INSERT INTO QuestionOne VALUES (?,?)', insert_list_q1)
        insert_list_q1 = list()
        
