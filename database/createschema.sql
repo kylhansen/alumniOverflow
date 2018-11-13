@@ -12,12 +12,12 @@ CREATE TABLE Participants (
     major           VARCHAR(20)
     );
 
-CREATE TABLE QuestionOne (
+CREATE TABLE QuestionOne ( 	
     email VARCHAR(50),
     category VARCHAR(30)
     ); 
 
-CREATE TABLE QuestionTwo (
+CREATE TABLE QuestionTwo ( 	
     email VARCHAR(50),
     category VARCHAR(30)
     ); 	
@@ -28,11 +28,11 @@ CREATE TABLE QuestionThree (
     );
 
 CREATE TABLE QuestionFour (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,	
     email VARCHAR(50),
     category VARCHAR(30),
     question VARCHAR(300),
-	published BOOLEAN,
-	link VARCHAR(100)
+    published BOOLEAN
     );
 
 CREATE TABLE Alumni (
