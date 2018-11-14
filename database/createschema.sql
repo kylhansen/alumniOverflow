@@ -48,7 +48,7 @@ CREATE TABLE Alumni (
 CREATE TABLE RespondsTo (
     responder_email VARCHAR(50),
     date_responded  DATE,
-    link            VARCHAR(100),
+    id		    Integer,
     answer          VARCHAR(500)
     );
 
