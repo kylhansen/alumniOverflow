@@ -35,6 +35,10 @@ CREATE TABLE QuestionFour (
     published BOOLEAN
     );
 
+CREATE TABLE Categories (
+    category VARCHAR(50)
+    );
+
 CREATE TABLE Alumni (
     email       VARCHAR(50) PRIMARY KEY,
     occupation  VARCHAR(20),

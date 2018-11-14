@@ -12,6 +12,8 @@ DROP TABLE QuestionOne;
 
 DROP TABLE QuestionTwo;
 
+DROP TABLE Categories;
+
 DROP TABLE QuestionThree;
 
 DROP TABLE QuestionFour;
