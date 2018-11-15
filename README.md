@@ -1,6 +1,8 @@
 # alumniOverflow
 
 # TODO:
+  * Create global DATABASE accessing functions (such as global DB_NAME, DB_CONNECT, and maybe some other functions).
+    * Should there be a python script specifically dedicated to commonly executed SQL commands?
   * Design Database [Christian, Kyle]
   * Fill out TODO
   * Connect sqlite with python [Christian,Jared,Tanner]
@@ -13,6 +15,12 @@
     ```
     This will create a database file "2468" in the database directory
     
+  * From the "database" directory, enter "sqlite3 2468" database
+  * Execute ".read createschema.sql" to create tables
+  * Execute ".read populate.sql" to fill tables
+  * Execute ".read dropschema.sql" to empty tables
+  * When finished, remove all data and drop tables by executing ".read dropschema.sql"
+    
 # PYTHON
   * app.py
     * To begin a local session, in terminal execute the following command from the main directory:
@@ -21,30 +29,35 @@
       ```  
   * survey.py
     * Testing:
-      * Run `app.py` as above and in a web browser navigate to "<local_host>/survey_q0.html".
+      * Run `app.py` as above and in a web browser navigate to `<local_host>/survey_q0.html`.
       * Follow directions on screen and fill out the survey.
     * Bugs: 
-      * Javascript for q3 doesn't work with flask to allow "disabling" other selected options as of right now, so that a user could select the same question multiple times. Could be changed to a checkbox system as in other questions, though we would need to make sure they can only select 4 at most.
       * Need to force some questions to be answered (like email, and some from q3)
-    
+      * When selecting top 4 categories, allows for selecting an empty category (need to disable base option)
+
+  * list_questions.py
+    * Purpose: to list all questions and categories in the database
+    * Testing:
+      * Run `app.py` as above, and in a web browser navigate to `<local_host>/list_questions/<user>` where `<user>` can be any string, but the only meaningful strings should be "moderator" and "expert". Alternatively, from the home page click "view all questions", which will navigae to the page without any `<user>` variable declared.
+      * Try putting in various strings for `<user>` and see the greeting at the top of the page change
+      * A list of test categories and test questions should display. Click on any question to be taken to the next page, which is currently a template, which the `<user>` variable has been passed into. Verify this by checking the message that shows up.
+    * Bugs:
+      * Unknown as of right now.
+    * TODO:
+      * Connect to database and fetch data from there (currently data is hardcoded in)
 # DATABASE
   * Create/enter the database called "2468" by typing the following command
     ```
     sqlite3 2468
-    ```
-  * To test, for now, do the following:
-    * From the "database" directory, enter "sqlite3 2468" database
-    * Execute ".read createschema.sql" to create tables
-    * Try inserting and deleting various things in the database
-    * When finished, remove all data and drop tables by executing ".read dropschema.sql"
-  
+    
+    ```  
   __TO DO [Tanner, Christian, Jared]:__
   * ~~Add keys~~
-  * Connect to Python
+  * ~~Connect to Python~~
   * Write scripts for incremental database design
   * ~~Modify to make Q4 its own table (instead of the whole survey) -- for future, add tables for other questions as well~~
-  * Create a test dataset
-  * Make an automated test
+  * ~~Create a test dataset~~
+  
 
 # HTML TEMPLATES
 Fully functional pages:

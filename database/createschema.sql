@@ -12,35 +12,49 @@ CREATE TABLE Participants (
     major           VARCHAR(20)
     );
 
-CREATE TABLE QuestionFour (
-	email VARCHAR(50),
-  	question VARCHAR(300),
-  	category VARCHAR(50)	
-);
+CREATE TABLE QuestionOne ( 	
+    email VARCHAR(50),
+    category VARCHAR(30)
+    ); 
 
-CREATE TABLE PublishedQuestions (
-    text        VARCHAR(300),
-    link        VARCHAR(100),
-    category    VARCHAR(30)
+CREATE TABLE QuestionTwo ( 	
+    email VARCHAR(50),
+    category VARCHAR(30)
+    ); 	
+
+CREATE TABLE QuestionThree (
+    email VARCHAR(50),
+    category VARCHAR(30)
+    );
+
+CREATE TABLE QuestionFour (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,	
+    email VARCHAR(50),
+    category VARCHAR(30),
+    question VARCHAR(300),
+    published BOOLEAN
+    );
+
+CREATE TABLE Categories (
+    category VARCHAR(50)
     );
 
 CREATE TABLE Alumni (
     email       VARCHAR(50) PRIMARY KEY,
     occupation  VARCHAR(20),
-    name 	VARCHAR(20)
+    name     VARCHAR(20)
     );
-
 
 CREATE TABLE RespondsTo (
     responder_email VARCHAR(50),
     date_responded  DATE,
-    link            VARCHAR(100),
+    id		    Integer,
     answer          VARCHAR(500)
     );
 
 CREATE TABLE ConnectsWith (
     participant_email   VARCHAR(50),
     alumni_email        VARCHAR(50),
-    link                VARCHAR(100),
-	PRIMARY KEY(participant_email, alumni_email)
+    id                  INTEGER,
+    PRIMARY KEY(participant_email, alumni_email)
     );

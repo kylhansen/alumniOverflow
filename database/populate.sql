@@ -6,18 +6,11 @@ INSERT INTO Participants VALUES ("schlop","linksy","schlop@email","1962-01-01","
 INSERT INTO Participants VALUES ("Bingbong","low","bingbong@email","2050-06-13","UCSD","2071","Reading");
 
 /* Fills QuestionFour table */
-INSERT INTO QuestionFour VALUES ("1","I need help","2","How does one make money");
-INSERT INTO QuestionFour VALUES ("1","Is money green","2","will we use physical money in the furure");
-INSERT INTO QuestionFour VALUES ("2","how do I interview","3","What are some interview tips");
-INSERT INTO QuestionFour VALUES ("2","how do loans work","4","should I take any loans");
-INSERT INTO QuestionFour VALUES ("3","Is time actually an illusion","4","how do you do block comments in python");
-
-/* Fills PublishedQuestions table */
-INSERT INTO PublishedQuestions VALUES ("How do loans work","thisisafakeline.com","finance");
-INSERT INTO PublishedQuestions VALUES ("how do you do block comments in python","pythonquesiton.com","CompSci");
-INSERT INTO PublishedQuestions VALUES ("What are some interview tips","interview.com","Job Search");
-INSERT INTO PublishedQuestions VALUES ("Is money green","money.com","general");
-INSERT INTO PublishedQuestions VALUES ("How does one make money","money.com","finance");
+INSERT INTO QuestionFour VALUES ("100","bob@email","finance","How does one make money","false");
+INSERT INTO QuestionFour VALUES ("101","may@email","finance","Is money green","false");
+INSERT INTO QuestionFour VALUES ("102","rudy@email","job search","What are some interview tips","false");
+INSERT INTO QuestionFour VALUES ("103","schlop@email","finance","how do loans work","false");
+INSERT INTO QuestionFour VALUES ("104","bingbong@email","life tips","Is time actually an illusion","false");
 
 /* Fills Alumni table */
 INSERT INTO Alumni VALUES ("oldman@email","Retired","Bill");
@@ -39,3 +32,25 @@ INSERT INTO ConnectsWith VALUES ("may@email","oldwoman@email","letsconnect.com")
 INSERT INTO ConnectsWith VALUES ("rudy@email","iamabillionair@email","letsconnect.com");
 INSERT INTO ConnectsWith VALUES ("schlop@email","heycallmerich@email","letsconnect.com");
 INSERT INTO ConnectsWith VALUES ("bingbong@email","meme@email","letsconnect.com");
+
+/* Fills QuestionOne table */
+INSERT INTO QuestionOne VALUES ("bob@email","finance");
+insert into QuestionOne values ("rudy@email","buisness");
+insert into QuestionOne values ("schlop@email","life advice");
+insert into QuestionOne values ("bingbong@email","history");
+insert into QuestionOne values ("may@email","loans");
+
+/* Fills QuestionTwo table*/
+insert into QuestionTwo values ("bob@email","loans");
+insert into QuestionTwo values ("rudy@email","history");
+insert into QuestionTwo values ("schlop@email","finace");
+insert into QuestionTwo values ("bingbong@email","life advice");
+insert into QuestionTwo values ("may@email","buisness");
+
+/* Fills into QuestionThree table*/
+insert into QuestionThree values ("bob@email","computer science");
+insert into QuestionThree values ("rudy@email","data analytics");
+insert into QuestionThree values ("schlop@email","english");
+insert into QuestionThree values ("bingbong@email","math");
+insert into QuestionThree values ("may@email","chemistry");
+

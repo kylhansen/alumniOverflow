@@ -27,9 +27,10 @@ def survey_q0():
         session['last_name'] = last_name
         session['email'] = email
         session['dob'] = dob
-        session ['institution'] = institution
+        session['institution'] = institution
         session['grad_year'] = grad_year
         session['majors'] = majors
+
         
         return redirect(url_for('survey.survey_q1'))
 
@@ -38,27 +39,24 @@ def survey_q0():
 
 @survey.route('/survey_q1', methods=["POST", "GET"])
 def survey_q1():
-    # The survey categories which are currently hardcoded, but ought to be replaced by the actual categories
-    professional_categories = ['Test 1', 'Test 2', 'Test 3']
-    personal_categories = ['Another Test 1','Another Test 2','Another Test 3']
+    # Read in the categories present in the database
+    categories = get_categories()
 
     # Process submission and send user to next page
     if request.method=="POST":
         # Fetch the categories which the user selected and put them in a list
-        categories = list()
+        selected_categories = list()
         for key in request.form.keys():
-            print(key)
-            print(request.form[key])
             if request.form[key]:
-                categories.append(key)
+                selected_categories.append(key)
         # Save all categories selected
-        session['categories'] = categories
+        session['categories'] = selected_categories
 
         # Send the user to the next question
         return redirect(url_for('survey.survey_q2'))
 
     # Render question 1
-    return render_template('survey_q1.html', professional = professional_categories, personal = personal_categories)
+    return render_template('survey_q1.html', categories = categories)
 
 @survey.route('/survey_q2', methods=["POST", "GET"])
 def survey_q2():
@@ -98,14 +96,12 @@ def survey_q3():
 @survey.route('/survey_q4', methods=["POST", "GET"])
 def survey_q4():
     if request.method=="POST":
-        q_and_a = dict()
-        # Fetch the question/answer pair for the response
-        for key,value in request.form.items():
-            print(key)
-            print(value)
-            q_and_a[key] = value
+        c_and_q = dict()
+        # Fetch the category/question pair for the response
+        for category,question in request.form.items():
+            c_and_q[category] = question
         # TODO: pass all relevant information from the session off to the database
-        session['q_and_a'] = q_and_a
+        session['c_and_q'] = c_and_q
         
         #loads all data into database
         load_db()
@@ -113,13 +109,23 @@ def survey_q4():
         # Send the user to the "thank you" page
         return render_template("survey_end.html")
     
-    
     # Render question 4
     return render_template("survey_q4.html", question_categories=session['question_categories'])
 
 
+def get_categories():
+    conn = sqlite3.connect('database/2468')
+    c = conn.cursor()
 
-    
+    categories = set()
+    for row in c.execute('SELECT category FROM categories'):
+        categories.add(row[0])
+        
+    c.close()
+    conn.close()
+    return categories
+
+
 def load_db():
     #opens connection with the local database, and creates a cursor that allows commands to be sent to the database
     conn = sqlite3.connect('database/2468')
@@ -127,16 +133,44 @@ def load_db():
    
 
     #list of data to be inserted into participants table
-    insert_list_par = [(str(session['first_name'].encode('ascii','ignore')), str(session['last_name'].encode('ascii','ignore')), str(session['email'].encode('ascii','ignore')),
-                         str(session['dob'].encode('ascii','ignore')), str(session['institution'].encode('ascii','ignore')), str(session['grad_year'].encode('ascii','ignore')),
-                         str(session['majors'].encode('ascii','ignore')))]
+    insert_list_par = [(str(session['first_name']), str(session['last_name']), str(session['email']),
+                         str(session['dob']), str(session['institution']), str(session['grad_year']),
+                         str(session['majors']))]
         
     #saves command that inserts user input into the Participants table of the local database to be excuted later at end of function call
     c.executemany('INSERT INTO Participants VALUES (?,?,?,?,?,?,?)', insert_list_par)
-              
+    
+    
+    #inserts data into question one table
+    for cat in session['categories']:
+       insert_list_q1 = [session['email'], cat] 
+       c.execute('INSERT INTO QuestionOne VALUES (?,?)', insert_list_q1)
+       insert_list_q1 = list()
+       
+    #inserts data into question two table
+    for cat in session['top_categories']:
+       insert_list_q2 = [session['email'], cat] 
+       c.execute('INSERT INTO QuestionTwo VALUES (?,?)', insert_list_q2)
+       insert_list_q2 = list()
+       
+    #inserts data into question three table
+    for cat in session['question_categories']:
+       insert_list_q3 = [session['email'], cat] 
+       c.execute('INSERT INTO QuestionThree VALUES (?,?)', insert_list_q3)
+       insert_list_q3 = list()
+       
+
+    #inserts data into question 4 table
+    insert_list_q4 = []
+    c_and_q = session['c_and_q']
+    for category in c_and_q:
+        insert_list_q4.append((session['email'],category,c_and_q[category],"False"))
+
+    c.executemany('INSERT INTO QuestionFour (email,category,question,published) VALUES (?,?,?,?)', insert_list_q4)
 
     #sends all commands in one swell foop so it is atomic, and closes local database connection
     conn.commit()
+    c.close()
     conn.close()
 
 
