@@ -20,9 +20,9 @@ body {
   </li><br><br>
 {% endfor %}
 </ol>
-{% if action == "review" %}
+{% if user == "moderator" %}
     Edit/Delete/Publish Actions Enabled
-{% elif action == "answer" %}
+{% elif user == "expert" %}
 <form method="POST">
   Answer Question:<br>
   <input type="text" name="answer_text"><br>
