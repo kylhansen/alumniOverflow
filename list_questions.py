@@ -1,7 +1,7 @@
 #coding: utf8
-# 
-# Serves a page that laets a client answer the initial survey 
-# 
+#
+# Serves a page that laets a client answer the initial survey
+#
 
 from flask import Blueprint, session, render_template, request, redirect, url_for
 import sqlite3
@@ -10,7 +10,6 @@ import os
 # There ought to be a global "DB_NAME" and "DB_CONNECT" variables.
 file_path = os.path.dirname(os.path.realpath(__file__))
 DB_NAME = file_path + '/database/2468'
-conn = sqlite3.connect(DB_NAME)
 # We ought to have either fixed categories, or a global database-accessing function which retrieves all categories for us
 FIXED_CATEGORIES = ['Category 1', 'Category 2', 'Category 3', 'Category 4', 'Category 5', 'Category 6', 'Category 7', 'Category 8']
 
@@ -29,10 +28,11 @@ def set_user(user):
 def display(user):
     user = set_user(user)
     greeting = "Welcome, " + user + "!"
+    conn = sqlite3.connect(DB_NAME) #This needs to not be global, otherwise threading errors will happen.
     curs = conn.cursor()
     question_categories = dict()
 
-    # HOPEFULLY these following lines of code will produce a dictionary similar to that in 'test_q_c' as below. 
+    # HOPEFULLY these following lines of code will produce a dictionary similar to that in 'test_q_c' as below.
     #   the dictionary should look like: { <category> : <list-of-tuples [ <question>, <question_link> ]> }
     for row in curs.execute('SELECT * FROM QuestionFour'):
         email = row[0]
@@ -58,4 +58,3 @@ def display(user):
 def question_view(user):
     user = set_user(user)
     return render_template('temp.html', user=user)
-
