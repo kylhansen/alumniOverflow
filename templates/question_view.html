@@ -11,9 +11,9 @@ body {
 <body>
 
 <h>Viewing Question: {{ questionid }}</h><br>
-{% if action == "review" %}
+{% if user == "reviewer" %}
     Edit/Delete/Publish Actions Enabled
-{% elif action == "answer" %}
+{% elif user == "expert" %}
     Answer Action Enabled
 {% endif %}
 

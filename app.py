@@ -1,6 +1,5 @@
 from flask import Flask, render_template, url_for
 from survey import survey
-from search import search
 import socket
 
 from list_questions import list_questions
