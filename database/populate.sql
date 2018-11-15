@@ -6,18 +6,11 @@ INSERT INTO Participants VALUES ("schlop","linksy","schlop@email","1962-01-01","
 INSERT INTO Participants VALUES ("Bingbong","low","bingbong@email","2050-06-13","UCSD","2071","Reading");
 
 /* Fills QuestionFour table */
-INSERT INTO QuestionFour VALUES ("bob@email","finance","How does one make money");
-INSERT INTO QuestionFour VALUES ("may@email","finance","Is money green");
-INSERT INTO QuestionFour VALUES ("rudy@email","job search","What are some interview tips");
-INSERT INTO QuestionFour VALUES ("schlop@email","finance","how do loans work");
-INSERT INTO QuestionFour VALUES ("bingbong@email","life tips","Is time actually an illusion");
-
-/* Fills PublishedQuestions table */
-INSERT INTO PublishedQuestions VALUES ("How do loans work","thisisafakeline.com","finance");
-INSERT INTO PublishedQuestions VALUES ("how do you do block comments in python","pythonquesiton.com","CompSci");
-INSERT INTO PublishedQuestions VALUES ("What are some interview tips","interview.com","Job Search");
-INSERT INTO PublishedQuestions VALUES ("Is money green","money.com","general");
-INSERT INTO PublishedQuestions VALUES ("How does one make money","money.com","finance");
+INSERT INTO QuestionFour VALUES ("100","bob@email","finance","How does one make money","false");
+INSERT INTO QuestionFour VALUES ("101","may@email","finance","Is money green","false");
+INSERT INTO QuestionFour VALUES ("102","rudy@email","job search","What are some interview tips","false");
+INSERT INTO QuestionFour VALUES ("103","schlop@email","finance","how do loans work","false");
+INSERT INTO QuestionFour VALUES ("104","bingbong@email","life tips","Is time actually an illusion","false");
 
 /* Fills Alumni table */
 INSERT INTO Alumni VALUES ("oldman@email","Retired","Bill");

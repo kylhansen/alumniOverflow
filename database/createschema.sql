@@ -55,6 +55,6 @@ CREATE TABLE RespondsTo (
 CREATE TABLE ConnectsWith (
     participant_email   VARCHAR(50),
     alumni_email        VARCHAR(50),
-    link                VARCHAR(100),
+    id                  INTEGER,
     PRIMARY KEY(participant_email, alumni_email)
     );
