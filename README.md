@@ -17,8 +17,9 @@
     
   * From the "database" directory, enter "sqlite3 2468" database
   * Execute ".read createschema.sql" to create tables
+  * Execute ".read populateCategories.sql" to fill the category table
   * Execute ".read populate.sql" to fill tables
-  * Execute ".read dropschema.sql" to empty tables
+  * Execute ".read dropschema.sql" to remove all tables
   * When finished, remove all data and drop tables by executing ".read dropschema.sql"
     
 # PYTHON
@@ -29,7 +30,7 @@
       ```  
   * survey.py
     * Testing:
-      * Run `app.py` as above and in a web browser navigate to `<local_host>/survey_q0.html`.
+      * Run `app.py` as above and in a web browser navigate to `<your_ip_address>/survey_q0.html`.
       * Follow directions on screen and fill out the survey.
     * Bugs: 
       * Need to force some questions to be answered (like email, and some from q3)

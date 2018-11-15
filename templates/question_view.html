@@ -1,20 +1,35 @@
 <!doctype html>
 <html>
 <head>
-<style>
+<!--<style>
 body {
   background-color: #A0A0BB;
 }
-</style>
+</style>-->
 </head>
 
 <body>
 
-<h>Viewing Question: {{ questionid }}</h><br>
-{% if user == "reviewer" %}
+<h>{{ question[3] }}</h><br>
+<ol>
+{% for answer in answers %}
+  <li>
+    {{ answer[3] }}<br>
+    <i>answered by {{ answer[0] }}</i><br>
+    <i>on {{ answer[1] }}</i><br>
+  </li><br><br>
+{% endfor %}
+</ol>
+{% if user == "moderator" %}
     Edit/Delete/Publish Actions Enabled
 {% elif user == "expert" %}
-    Answer Action Enabled
+<form method="POST">
+  Answer Question:<br>
+  <input type="text" name="answer_text"><br>
+  Email:<br>
+  <input type="text" name="email"><br>
+  <input type="submit" class="SubmitButton">
+</form>
 {% endif %}
 
 </body>

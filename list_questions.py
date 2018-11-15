@@ -1,7 +1,7 @@
 #coding: utf8
-# 
-# Serves a page that laets a client answer the initial survey 
-# 
+#
+# Serves a page that laets a client answer the initial survey
+#
 
 from flask import Blueprint, session, render_template, request, redirect, url_for
 import sqlite3
@@ -26,8 +26,10 @@ def set_user(user):
 def display(user):
     user = set_user(user)
     greeting = "Welcome, " + user + "!"
+
     conn = sqlite3.connect(DB_NAME)
     curs1 = conn.cursor()
+
     question_categories = dict()
    
     categories = list()
@@ -65,4 +67,3 @@ def display(user):
 def question_view(questionid, user):
     user = set_user(user)
     return render_template('temp.html', user=user)
-

@@ -6,9 +6,9 @@ INSERT INTO Participants VALUES ("schlop","linksy","schlop@email","1962-01-01","
 INSERT INTO Participants VALUES ("Bingbong","low","bingbong@email","2050-06-13","UCSD","2071","Reading");
 
 /* Fills QuestionFour table */
-INSERT INTO QuestionFour VALUES ("100","bob@email","finance","How does one make money","false");
-INSERT INTO QuestionFour VALUES ("101","may@email","finance","Is money green","false");
-INSERT INTO QuestionFour VALUES ("102","rudy@email","job search","What are some interview tips","false");
+INSERT INTO QuestionFour VALUES ("100","bob@email","finance","How does one make money","true");
+INSERT INTO QuestionFour VALUES ("101","may@email","finance","Is money green","true");
+INSERT INTO QuestionFour VALUES ("102","rudy@email","job search","What are some interview tips","true");
 INSERT INTO QuestionFour VALUES ("103","schlop@email","finance","how do loans work","false");
 INSERT INTO QuestionFour VALUES ("104","bingbong@email","life tips","Is time actually an illusion","false");
 
@@ -20,11 +20,11 @@ INSERT INTO Alumni VALUES ("theycallmerich@email","software developer","markcuba
 INSERT INTO Alumni VALUES ("meme@email","professional meme creator","pepe");
 
 /* Fills RespondsTo table */
-INSERT INTO RespondsTo VALUES ("icanhelp0@email","2012-01-15","helpinglink0.com","Get a job");
-INSERT INTO RespondsTo VALUES ("icanhelp1@email","2018-06-08","helpinglink1.com","try this");
-INSERT INTO RespondsTo VALUES ("icanhelp2@email","2017-11-05","helpinglink2.com","maybe go here");
-INSERT INTO RespondsTo VALUES ("icanhelp3@email","2018-01-30","helpinglink3.com","send me your resume");
-INSERT INTO RespondsTo VALUES ("icanhelp4@email","2017-06-27","helpinglink4.com","you can work for me");
+INSERT INTO RespondsTo VALUES ("icanhelp0@email","2012-01-15","200","Get a job");
+INSERT INTO RespondsTo VALUES ("icanhelp1@email","2018-06-08","201","try this");
+INSERT INTO RespondsTo VALUES ("icanhelp2@email","2017-11-05","202","maybe go here");
+INSERT INTO RespondsTo VALUES ("icanhelp3@email","2018-01-30","203","send me your resume");
+INSERT INTO RespondsTo VALUES ("icanhelp4@email","2017-06-27","204","you can work for me");
 
 /* Fills ConnectsWith table */
 INSERT INTO ConnectsWith VALUES ("yeet@email","oldman@email","letsconnect.com");
