@@ -23,7 +23,13 @@ body {
 {% if action == "review" %}
     Edit/Delete/Publish Actions Enabled
 {% elif action == "answer" %}
-    Answer Action Enabled
+<form method="POST">
+  Answer Question:<br>
+  <input type="text" name="answer_text"><br>
+  Email:<br>
+  <input type="text" name="email"><br>
+  <input type="submit" class="SubmitButton">
+</form>
 {% endif %}
 
 </body>

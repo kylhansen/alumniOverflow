@@ -21,9 +21,12 @@ def view_question(questionid, action):
             return "TODO: Redirect back to questions list."
         elif action == "answer":
             answer_text = request.form["answer_text"] #May be the text of a new answer or alternately the revision of an existing answer paired with the given email addres. Which one is asked for is handled by javascript.
-            timestamp = datetime.datetime.now().strftime("%m/%d/%Y")
+            timestamp = datetime.datetime.now().strftime("%Y-%m-%d")
             email = request.form["email"]
-            #Does not return anything, because we in fact want to redirect the answerer back to the question itself so they can see their answer.
+            cursor.execute("INSERT INTO RespondsTo VALUES (?,?,?,?)", [email, timestamp, questionid, answer_text])
+            connection.commit()
+            responses = cursor.execute('SELECT * FROM RespondsTo WHERE id = {}'.format(questionid)).fetchall() #Refresh responses.
+            #Continue to serve the template like normal, so the user can see their own answer added.
         else:
             raise RuntimeError("Unexpected POST for /question/{}/{}".format(questionid, action))
     return render_template('question_view.html', question=question, answers=responses, action=action)
