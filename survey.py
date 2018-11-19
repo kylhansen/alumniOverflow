@@ -14,6 +14,9 @@ def survey_q0():
     if request.method=="POST":
         # TODO: if needed, put in database here. 
         #   Otherwise, wait to add all data at the end, and save all this in the session (Probably the latter)
+        conn = sqlite3.connect('database/2468')
+        c = conn.cursor()
+
         first_name = request.form['firstname']
         last_name = request.form['lastname']
         email = request.form['email']
@@ -22,6 +25,14 @@ def survey_q0():
         grad_year = request.form['graddate']
         majors = request.form['majors']
 
+        c.execute('select email from participants where email = ?', [email])
+        if c.fetchone() == None:
+            c.close()
+            conn.close()
+            return redirect(url_for('survey.survey_q0'))
+
+        c.close()
+        conn.close()
         # Add all keys to the session with the user input data 
         session['first_name'] = first_name
         session['last_name'] = last_name
