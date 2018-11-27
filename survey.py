@@ -26,7 +26,7 @@ def survey_q0():
         majors = request.form['majors']
 
         c.execute('select email from participants where email = ?', [email])
-        if c.fetchone() == None:
+        if c.fetchone() != None:
             c.close()
             conn.close()
             return redirect(url_for('survey.survey_q0'))
