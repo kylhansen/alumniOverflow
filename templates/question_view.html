@@ -21,7 +21,12 @@ body {
 {% endfor %}
 </ol>
 {% if user == "moderator" %}
-    Edit/Delete/Publish Actions Enabled
+<form method="POST">
+  <input type="text" name="question_text" placeholder="Enter new question text..."><br>
+  <input type="text" name="category" placeholder="Enter new category..."><br>
+  <input type="submit" name="publish" value="Publish Question" class="SubmitButton"><br><br>
+  <input type="submit" name="delete" value="Delete Question (Warning: Cannot be undone)" class="SubmitButton">
+</form>
 {% elif user == "expert" %}
 <form method="POST">
   Answer Question:<br>
