@@ -7,6 +7,9 @@
     * Delete answers
     * Link back
     * Display category and question
+    * Moderator should be able to save edits without publishing
+    * Publishing a question with empty text publishes a blank question
+  * mark published questions in moderator view [Kyle]
   * Crisp Prompts [Kyle]
   * ~~Link for moderator/expert/viewer from homepage [Drew, M'Kya]~~
 
