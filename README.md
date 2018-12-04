@@ -1,11 +1,13 @@
 # alumniOverflow
 
 # TODO:
-  * Create global DATABASE accessing functions (such as global DB_NAME, DB_CONNECT, and maybe some other functions).
-    * Should there be a python script specifically dedicated to commonly executed SQL commands?
-  * Design Database [Christian, Kyle]
-  * Fill out TODO
-  * Connect sqlite with python [Christian,Jared,Tanner]
+  * Add clearer prompts
+   * make them intuitive, describe what each page should do
+  * Moderator should be able to save edits without publishing
+  * Publishing a question with empty text publishes a blank question
+  * mark published questions in moderator view
+  * moderator should be able to delete answers
+  * edit category should be a dropdown
 
 # SETUP
   * Install SQLite
