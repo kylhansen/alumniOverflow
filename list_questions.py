@@ -60,10 +60,3 @@ def display(user):
 
     #test_q_c = {'category 1' : [['This is a question about category 1',link], ['This is another question about category 1!', link]], 'this is category 2': [['This is a question about category 2', link], ['I have another question!!!', link], ['this is not a question.', link]]}
     return render_template('list_questions.html',user=user, question_categories=question_categories, greeting=greeting)
-
-# a standin for the "question" view which will be provided by the other team
-@list_questions.route('/temp/', defaults={'user':None})
-@list_questions.route('/temp/<questionid>/<user>/')
-def question_view(questionid, user):
-    user = set_user(user)
-    return render_template('temp.html', user=user)

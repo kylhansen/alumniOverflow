@@ -1,13 +1,17 @@
 # alumniOverflow
 
 # TODO:
-  * Add clearer prompts
-   * make them intuitive, describe what each page should do
-  * Moderator should be able to save edits without publishing
-  * Publishing a question with empty text publishes a blank question
-  * mark published questions in moderator view
-  * moderator should be able to delete answers
-  * edit category should be a dropdown
+  * Moderator in question view [Trevor]
+    * Edit question separately from category
+    * Change category via dropdown menu
+    * Delete answers
+    * Link back
+    * Display category and question
+    * Moderator should be able to save edits without publishing
+    * Publishing a question with empty text publishes a blank question
+  * mark published questions in moderator view [Kyle]
+  * Crisp Prompts [Kyle]
+  * ~~Link for moderator/expert/viewer from homepage [Drew, M'Kya]~~
 
 # SETUP
   * Install SQLite

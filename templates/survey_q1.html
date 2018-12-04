@@ -7,7 +7,6 @@
 <!-- The following table displays the "categories" from the "Appreciate U" survey -->
 
 <form method="POST">
-    <h3>Professional/Career</h3>
     {% for category in categories %}
         <input type="checkbox" name='{{ category }}' value='true'>{{ category }}<br>
     {% endfor %}
