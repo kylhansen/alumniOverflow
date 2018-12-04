@@ -1,7 +1,15 @@
 <!DOCTYPE html>
-{{ greeting }}
+<h1>{{ greeting }}</h1>
 
-For each topic, list all published questions of that topic in the following way:
+Click any question to 
+{% if user=='moderator' %}
+    view, edit, publish, or delete 
+{% elif user=='expert' %}
+    view or answer 
+{% else %}
+    view 
+{% endif %}
+it.
 
 {% for category, values in question_categories.items() %}
     <h2>{{ category }}</h2>

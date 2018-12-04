@@ -17,7 +17,12 @@ my_ip=([(s.connect(('8.8.8.8', 53)), s.getsockname()[0], s.close()) for s in [so
 
 @app.route('/')
 def home():
-    return "<a href=" + url_for('survey.survey_q0') + ">Link to survey</a><br><a href="+ url_for('list_questions.display')  + ">Link to view questions</a>"
+    survey_link = url_for('survey.survey_q0')
+    list_questions = url_for('list_questions.display')
+    return render_template("home.html", survey_link=survey_link, list_questions=list_questions)
+    
+    
+    #"<a href=" + url_for('survey.survey_q0') + ">Link to survey</a><br><a href="+ url_for('list_questions.display')  + ">Link to view questions</a>"
 
 if __name__ == '__main__':
     app.run(host=my_ip, port=3134)
