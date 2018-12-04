@@ -30,7 +30,7 @@ def view_question(questionid, user):
                     return "Invalid Category"
                 else:
                     cursor.execute("UPDATE QuestionFour SET category = ? WHERE id = ?", [category, questionid])
-            cursor.execute("UPDATE QuestionFour SET (question, published) = (?, ?) WHERE id = ?", [question_text, True, questionid]) #Update question text and publish.
+            cursor.execute("UPDATE QuestionFour SET (question, published) = (?, ?) WHERE id = ?", [question_text, "true", questionid]) #Update question text and publish.
             question = cursor.execute('SELECT * FROM QuestionFour WHERE id = ?', [questionid]).fetchone() #Refresh the question so they can see the changes they made.
             connection.commit()
             connection.close()
