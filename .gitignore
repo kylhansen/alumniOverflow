@@ -2,3 +2,4 @@ database/2468
 *.pyc
 *.config
 *.yml
+*.swp
