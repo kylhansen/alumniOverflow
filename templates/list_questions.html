@@ -14,6 +14,14 @@ it.
 {% for category, values in question_categories.items() %}
     <h2>{{ category }}</h2>
     {% for question_link_pair in values %}
-        <li><a href='{{ question_link_pair[1] }}'>{{ question_link_pair[0] }}</a>
+        <li><a href='{{ question_link_pair[1] }}'>{{ question_link_pair[0] }} 
+        {% if user=='moderator' %}
+            {% if question_link_pair[2] == "true" %}
+                (Published)
+            {% else %}
+                (Unpublished)
+            {% endif %}
+        {% endif %}
+        </a>
     {% endfor %}
 {% endfor %}
