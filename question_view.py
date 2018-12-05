@@ -47,4 +47,8 @@ def view_question(questionid, user):
             #Do not return here. Continue to serve the template like normal, so the user can see their own answer added.
         else:
             raise RuntimeError("Unexpected POST for /question/{}/{}".format(questionid, user))
-    return render_template('question_view.html', question=question, answers=responses, user=user)
+    return render_template('question_view.html', question=question, answers=responses, user=user, back_url=url_for('list_questions.display', user=user))
+
+
+
+from list_questions import list_questions

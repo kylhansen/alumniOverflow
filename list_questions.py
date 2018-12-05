@@ -6,7 +6,6 @@
 from flask import Blueprint, session, render_template, request, redirect, url_for
 import sqlite3
 import os
-from question_view import question_view
 
 # There ought to be a global "DB_NAME" and "DB_CONNECT" variables.
 file_path = os.path.dirname(os.path.realpath(__file__))
@@ -60,3 +59,7 @@ def display(user):
 
     #test_q_c = {'category 1' : [['This is a question about category 1',link], ['This is another question about category 1!', link]], 'this is category 2': [['This is a question about category 2', link], ['I have another question!!!', link], ['this is not a question.', link]]}
     return render_template('list_questions.html',user=user, question_categories=question_categories, greeting=greeting)
+
+
+
+from question_view import question_view
