@@ -49,7 +49,7 @@ def display(user):
             published = row[4]
             
             link = url_for('question_view.view_question', questionid=qid, user=user)
-            values = [question, link]
+            values = [question, link, published]
 
             # Add question/link to dictionary 
             try:
