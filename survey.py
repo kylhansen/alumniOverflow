@@ -175,7 +175,7 @@ def load_db():
     insert_list_q4 = []
     c_and_q = session['c_and_q']
     for category in c_and_q:
-        insert_list_q4.append((session['email'],category,c_and_q[category],"False"))
+        insert_list_q4.append((session['email'],category,c_and_q[category],False))
 
     c.executemany('INSERT INTO QuestionFour (email,category,question,published) VALUES (?,?,?,?)', insert_list_q4)
 

@@ -18,3 +18,18 @@ def deleteAnswer(id, answer_text, user):
     connection.commit()
     connection.close()
     return redirect(url_for('question_view.view_question', questionid=id, user=user))
+
+def get_categories():
+    connection = sqlite3.connect('database/2468')
+    cursor = connection.cursor()
+    categories = cursor.execute("SELECT * FROM Categories").fetchall()
+    connection.commit()
+    connection.close()
+    return categories
+
+def update_question_item(questionid, attribute, value):
+    connection = sqlite3.connect('database/2468')
+    cursor = connection.cursor()
+    cursor.execute("UPDATE QuestionFour SET " + attribute + " = ? WHERE id = ?", [value, questionid])
+    connection.commit()
+    connection.close()
