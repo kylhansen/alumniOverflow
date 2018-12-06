@@ -30,7 +30,7 @@ def display(user):
     curs1 = conn.cursor()
 
     question_categories = dict()
-   
+
     categories = list()
     for category in curs1.execute('SELECT category FROM Categories;'):
         curs2 = conn.cursor()
@@ -39,18 +39,18 @@ def display(user):
         else:
             published = ''
         for row in curs2.execute('SELECT email, category, question, id, published FROM QuestionFour WHERE category = ?' + published + ';', category):
-            # The following produces a dictionary of the form below. 
+            # The following produces a dictionary of the form below.
             #   { <category> : <list-of-tuples [ <question>, <question_link> ]> }
             email = row[0]
             category = row[1]
             question = row[2]
             qid = row[3]
             published = row[4]
-            
+
             link = url_for('question_view.view_question', questionid=qid, user=user)
             values = [question, link, published]
 
-            # Add question/link to dictionary 
+            # Add question/link to dictionary
             try:
                 question_categories[category].append(values)
             except:
@@ -59,7 +59,3 @@ def display(user):
 
     #test_q_c = {'category 1' : [['This is a question about category 1',link], ['This is another question about category 1!', link]], 'this is category 2': [['This is a question about category 2', link], ['I have another question!!!', link], ['this is not a question.', link]]}
     return render_template('list_questions.html',user=user, question_categories=question_categories, greeting=greeting)
-
-
-
-from question_view import question_view
