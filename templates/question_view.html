@@ -9,33 +9,43 @@ body {
 </head>
 
 <body>
-<h1>{{ question[2] }}</h1>
-<h2>{{ question[3] }}</h2><br>
+
+<h1>{{ question[3] }}</h1><br>
+<i>in {{ question[2] }}</i><br>
 <ol>
 {% for answer in answers %}
   <li>
     {{ answer[3] }}<br>
     <i>answered by {{ answer[0] }}</i><br>
     <i>on {{ answer[1] }}</i><br>
+    {% if user == "moderator" %}
+      <button type="edit answer" onclick="editanswer("+{{ answer[2] }}+")">clear</button>
+    {% endif %}
   </li><br><br>
 {% endfor %}
 </ol>
 {% if user == "moderator" %}
-<form method="POST">
-  <input type="text" name="question_text" placeholder="Enter new question text..."><br>
-  <input type="text" name="category" placeholder="Enter new category..."><br>
-  <input type="submit" name="publish" value="Publish Question" class="SubmitButton"><br><br>
-  <input type="submit" name="delete" value="Delete Question (Warning: Cannot be undone)" class="SubmitButton">
-</form>
+  {% if question[4] == "true" %}
+    <i>(question has been published)</i>
+  {% else %}
+    <i>(question has not been published)</i>
+  {% endif %}
+  <form method="POST">
+    <input type="text" name="question_text" placeholder="Enter new question text..."><br>
+    <input type="text" name="category" placeholder="Enter new category..."><br>
+    <input type="submit" name="publish" value="Publish Question" class="SubmitButton"><br><br>
+    <input type="submit" name="delete" value="Delete Question (Warning: Cannot be undone)" class="SubmitButton">
+  </form>
 {% elif user == "expert" %}
-<form method="POST">
-  Answer Question:<br>
-  <input type="text" name="answer_text"><br>
-  Email:<br>
-  <input type="text" name="email"><br>
-  <input type="submit" class="SubmitButton">
-</form>
+  <form method="POST">
+    Answer Question:<br>
+    <input type="text" name="answer_text"><br>
+    Email:<br>
+    <input type="text" name="email"><br>
+    <input type="submit" class="SubmitButton">
+  </form>
+  <br>
 {% endif %}
-<a href='{{ back_url }}'>Return to the question list page here.</a>
+<a href='{{ back_url }}'>Back to question list...</a>
 </body>
 </html>

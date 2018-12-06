@@ -1,5 +1,6 @@
 import sqlite3
 import datetime
+from database_helpers import *
 from flask import Blueprint, render_template, request, redirect, url_for
 
 question_view = Blueprint('question_view', __name__, template_folder='templates')
@@ -8,10 +9,10 @@ question_view = Blueprint('question_view', __name__, template_folder='templates'
 def view_question(questionid, user):
     connection = sqlite3.connect('database/2468')
     cursor = connection.cursor()
-    question = cursor.execute('SELECT * FROM QuestionFour WHERE id = ?', [questionid]).fetchone()
+    question = get_question(questionid)
     if not question:
         return "<i>page not found</i>"
-    responses = cursor.execute('SELECT * FROM RespondsTo WHERE id = ?', [questionid]).fetchall()
+    responses = get_answers(questionid)
     if user not in ("viewer", "moderator", "expert"):
         return "<i>page not found</i>"
     if request.method=="POST":
