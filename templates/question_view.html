@@ -25,7 +25,7 @@ body {
 {% endfor %}
 </ol>
 {% if user == "moderator" %}
-  {% if question[4] == "true" %}
+  {% if question[4] == True %}
     <i>(question has been published)</i>
   {% else %}
     <i>(question has not been published)</i>

@@ -16,7 +16,7 @@ it.
     {% for question_link_pair in values %}
         <li><a href='{{ question_link_pair[1] }}'>{{ question_link_pair[0] }} 
         {% if user=='moderator' %}
-            {% if question_link_pair[2] == "true" %}
+            {% if question_link_pair[2] == True %}
                 (Published)
             {% else %}
                 (Unpublished)
