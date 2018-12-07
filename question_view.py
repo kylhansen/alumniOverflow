@@ -17,24 +17,26 @@ def view_question(questionid, user):
         return "<i>page not found</i>"
     if request.method=="POST":
         if user == "moderator":
-            if "delete" in request.form.keys():
+            if "delete_question" in request.form.keys():
                 cursor.execute("DELETE FROM QuestionFour WHERE id = ?", [questionid]) #Delete the question from the database.
                 cursor.execute("DELETE FROM RespondsTo WHERE id = ?", [questionid])   #Delete the answers for the question, too.
                 connection.commit()
                 connection.close()
                 return redirect(url_for('list_questions.display', user=user))
-            question_text = request.form["question_text"]
-            category = request.form["category"]
-            if category != "":
-                all_categories = cursor.execute('SELECT category FROM Categories').fetchall()
-                if (category,) not in all_categories: #Verify that the given category actually is a category.
-                    return "Invalid Category"
-                else:
-                    cursor.execute("UPDATE QuestionFour SET category = ? WHERE id = ?", [category, questionid])
-            cursor.execute("UPDATE QuestionFour SET (question, published) = (?, ?) WHERE id = ?", [question_text, True, questionid]) #Update question text and publish.
-            question = cursor.execute('SELECT * FROM QuestionFour WHERE id = ?', [questionid]).fetchone() #Refresh the question so they can see the changes they made.
-            connection.commit()
-            connection.close()
+            if "publish_question" in request.form.keys():
+                cursor.execute("UPDATE QuestionFour SET published = ? WHERE id = ?", [True, questionid]) #Update question text and publish.
+                question = cursor.execute('SELECT * FROM QuestionFour WHERE id = ?', [questionid]).fetchone() #Refresh the question so they can see the changes they made.
+                connection.commit()
+                connection.close()
+            if "unpublish_question" in request.form.keys():
+                cursor.execute("UPDATE QuestionFour SET published = ? WHERE id = ?", [False, questionid]) #Update question text and publish.
+                question = cursor.execute('SELECT * FROM QuestionFour WHERE id = ?', [questionid]).fetchone() #Refresh the question so they can see the changes they made.
+                connection.commit()
+                connection.close()
+            if "edit_question" in request.form.keys():
+                return redirect(url_for("edit.edit_question", questionid=questionid))
+            if "delete_answer" in request.form.keys():
+                return "delete answer" #WIP
             #Do not return here. Continue to serve the template like normal, so the user can see their own edits applied.
         elif user == "expert":
             answer_text = request.form["answer_text"]

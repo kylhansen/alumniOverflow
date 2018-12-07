@@ -1,51 +1,107 @@
 <!doctype html>
 <html>
+
 <head>
-<!--<style>
+<style>
 body {
-  background-color: #A0A0BB;
+  font-family: arial;
+  font-size: 16px;
 }
-</style>-->
+pre {
+  font-family: arial;
+  font-size: 16px;
+}
+h1 {
+  font-size: 24px;
+}
+h2 {
+  font-size: 20px;
+}
+i {
+  font-size: 12px;
+}
+ol {
+  margin: 0px;
+  padding-left: 0px;
+}
+.block {
+  background: #EAEAFA;
+  padding: 10px 24px;
+}
+.button {
+  background-color: #4C50AF;
+  border: none;
+  color: white;
+  padding: 6px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  border: 2px solid #4C50AF;
+}
+.button:hover {
+  background-color: white;
+  color: #4C50AF;
+}
+</style>
 </head>
 
 <body>
 
-<h1>{{ question[3] }}</h1><br>
-<i>in {{ question[2] }}</i><br>
+<div class="block">
+<h1>{{ question[3] }}</h1>
+<i>in "{{ question[2] }}"</i>
+
+{% if user == "moderator" %}
+  <form method="POST">
+    <input type="submit" class="button" name="edit_question" value="edit" class="SubmitButton">
+    {% if question[4] == True %}
+      <input type="submit" class="button" name="unpublish_question" value="unpublish" class="SubmitButton">
+    {% else %}
+      <input type="submit" class="button" name="publish_question" value="publish" class="SubmitButton">
+    {% endif %}
+    <input type="submit" class="button" name="delete_question" value="delete" class="SubmitButton">
+  </form>
+{% endif %}
+</div>
+<br>
+
+<h2>
+{{ answers|length }} answer{% if answers|length > 1 %}s{% endif %}
+</h2>
+<br>
+
 <ol>
-{% for answer in answers %}
+  {% for answer in answers %}
+  <div class="block">
   <li>
-    {{ answer[3] }}<br>
+    <pre>{{ answer[3] }}</pre>
     <i>answered by {{ answer[0] }}</i><br>
     <i>on {{ answer[1] }}</i><br>
-    {% if user == "moderator" %}
-      <button type="edit answer" onclick="editanswer("+{{ answer[2] }}+")">clear</button>
-    {% endif %}
-  </li><br><br>
-{% endfor %}
+    <!--{% if user == "moderator" %}
+      <form method="POST">
+        <input type="submit" class="button" name="delete_answer" value="delete" class="SubmitButton">
+      </form>
+    {% endif %}-->
+  </li>
+  </div>
+  <br>
+  {% endfor %}
 </ol>
-{% if user == "moderator" %}
-  {% if question[4] == True %}
-    <i>(question has been published)</i>
-  {% else %}
-    <i>(question has not been published)</i>
-  {% endif %}
+
+{% if user == "expert" %}
   <form method="POST">
-    <input type="text" name="question_text" placeholder="Enter new question text..."><br>
-    <input type="text" name="category" placeholder="Enter new category..."><br>
-    <input type="submit" name="publish" value="Publish Question" class="SubmitButton"><br><br>
-    <input type="submit" name="delete" value="Delete Question (Warning: Cannot be undone)" class="SubmitButton">
-  </form>
-{% elif user == "expert" %}
-  <form method="POST">
-    Answer Question:<br>
-    <input type="text" name="answer_text"><br>
-    Email:<br>
-    <input type="text" name="email"><br>
-    <input type="submit" class="SubmitButton">
+    <h2>Answer Question:</h2>
+    <textarea name="answer_text" rows="15" cols="80">Enter your answer here...</textarea>
+    <br>
+    Email: <input type="text" name="email">
+    <br><br>
+    <input type="submit" class="button" class="SubmitButton">
   </form>
   <br>
 {% endif %}
+
 <a href='{{ back_url }}'>Back to question list...</a>
+
 </body>
 </html>
