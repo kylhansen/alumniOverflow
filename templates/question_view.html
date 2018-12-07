@@ -2,57 +2,25 @@
 <html>
 
 <head>
-<style>
-body {
-  font-family: arial;
-  font-size: 16px;
-}
-pre {
-  font-family: arial;
-  font-size: 16px;
-}
-h1 {
-  font-size: 24px;
-}
-h2 {
-  font-size: 20px;
-}
-i {
-  font-size: 12px;
-}
-ol {
-  margin: 0px;
-  padding-left: 0px;
-}
-.block {
-  background: #EAEAFA;
-  padding: 10px 24px;
-}
-.button {
-  background-color: #4C50AF;
-  border: none;
-  color: white;
-  padding: 6px 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  border: 2px solid #4C50AF;
-}
-.button:hover {
-  background-color: white;
-  color: #4C50AF;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
 </head>
 
 <body>
 
+<div class="titlebar">
+<form action="{{ back_url }}">
+  alumni<b>overflow</b>
+  <input type="submit" class="button_toolbar button" value="All Questions"/>
+</form>
+</div>
+
+<div class="content">
 <div class="block">
 <h1>{{ question[3] }}</h1>
 <i>in "{{ question[2] }}"</i>
-
+<br>
 {% if user == "moderator" %}
+  <br>
   <form method="POST">
     <input type="submit" class="button" name="edit_question" value="edit" class="SubmitButton">
     {% if question[4] == True %}
@@ -69,7 +37,6 @@ ol {
 <h2>
 {{ answers|length }} answer{% if answers|length > 1 %}s{% endif %}
 </h2>
-<br>
 
 <ol>
   {% for answer in answers %}
@@ -78,11 +45,12 @@ ol {
     <pre>{{ answer[3] }}</pre>
     <i>answered by {{ answer[0] }}</i><br>
     <i>on {{ answer[1] }}</i><br>
-    <!--{% if user == "moderator" %}
+    {% if user == "moderator" %}
+      <br>
       <form method="POST">
         <input type="submit" class="button" name="delete_answer" value="delete" class="SubmitButton">
       </form>
-    {% endif %}-->
+    {% endif %}
   </li>
   </div>
   <br>
@@ -92,16 +60,15 @@ ol {
 {% if user == "expert" %}
   <form method="POST">
     <h2>Answer Question:</h2>
-    <textarea name="answer_text" rows="15" cols="80">Enter your answer here...</textarea>
+    <textarea name="answer_text" rows="14" cols="72">Enter your answer here...</textarea>
     <br>
     Email: <input type="text" name="email">
     <br><br>
-    <input type="submit" class="button" class="SubmitButton">
+    <input type="submit" class="button_submit button" class="SubmitButton">
   </form>
   <br>
 {% endif %}
-
-<a href='{{ back_url }}'>Back to question list...</a>
+</div>
 
 </body>
 </html>
