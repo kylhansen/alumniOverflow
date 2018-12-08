@@ -12,15 +12,15 @@ CREATE TABLE Participants (
     major           VARCHAR(20)
     );
 
-CREATE TABLE QuestionOne ( 	
+CREATE TABLE QuestionOne (
     email VARCHAR(50),
     category VARCHAR(30)
-    ); 
+    );
 
-CREATE TABLE QuestionTwo ( 	
+CREATE TABLE QuestionTwo (
     email VARCHAR(50),
     category VARCHAR(30)
-    ); 	
+    );
 
 CREATE TABLE QuestionThree (
     email VARCHAR(50),
@@ -28,7 +28,7 @@ CREATE TABLE QuestionThree (
     );
 
 CREATE TABLE QuestionFour (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,	
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     email VARCHAR(50),
     category VARCHAR(30),
     question VARCHAR(300),
@@ -46,6 +46,7 @@ CREATE TABLE Alumni (
     );
 
 CREATE TABLE RespondsTo (
+    answer_id INTEGER PRIMARY KEY AUTOINCREMENT,
     responder_email VARCHAR(50),
     date_responded  DATE,
     id		    Integer,

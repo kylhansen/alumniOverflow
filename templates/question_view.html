@@ -35,20 +35,21 @@
 <br>
 
 <h2>
-{{ answers|length }} answer{% if answers|length > 1 %}s{% endif %}
+{{ answers|length }} answer{% if answers|length != 1 %}s{% endif %}
 </h2>
 
 <ol>
   {% for answer in answers %}
   <div class="block">
   <li>
-    <pre>{{ answer[3] }}</pre>
-    <i>answered by {{ answer[0] }}</i><br>
-    <i>on {{ answer[1] }}</i><br>
+    <pre>{{ answer[4] }}</pre>
+    <i>answered by {{ answer[1] }}</i><br>
+    <i>on {{ answer[2] }}</i><br>
     {% if user == "moderator" %}
       <br>
       <form method="POST">
         <input type="submit" class="button" name="delete_answer" value="delete" class="SubmitButton">
+        <input type="hidden" name="which_answer" value="{{ answer[0] }}">
       </form>
     {% endif %}
   </li>

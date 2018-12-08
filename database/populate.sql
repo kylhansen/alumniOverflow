@@ -20,11 +20,11 @@ INSERT INTO Alumni VALUES ("theycallmerich@email","software developer","markcuba
 INSERT INTO Alumni VALUES ("meme@email","professional meme creator","pepe");
 
 /* Fills RespondsTo table */
-INSERT INTO RespondsTo VALUES ("icanhelp0@email","2012-01-15","200","Get a job");
-INSERT INTO RespondsTo VALUES ("icanhelp1@email","2018-06-08","201","try this");
-INSERT INTO RespondsTo VALUES ("icanhelp2@email","2017-11-05","202","maybe go here");
-INSERT INTO RespondsTo VALUES ("icanhelp3@email","2018-01-30","203","send me your resume");
-INSERT INTO RespondsTo VALUES ("icanhelp4@email","2017-06-27","204","you can work for me");
+INSERT INTO RespondsTo VALUES (null, "icanhelp0@email","2012-01-15","200","Get a job");
+INSERT INTO RespondsTo VALUES (null, "icanhelp1@email","2018-06-08","201","try this");
+INSERT INTO RespondsTo VALUES (null, "icanhelp2@email","2017-11-05","202","maybe go here");
+INSERT INTO RespondsTo VALUES (null, "icanhelp3@email","2018-01-30","203","send me your resume");
+INSERT INTO RespondsTo VALUES (null, "icanhelp4@email","2017-06-27","204","you can work for me"); /*Should not manually pass in an answer_id because the AUTOINCREMENT will assign one*/
 
 /* Fills ConnectsWith table */
 INSERT INTO ConnectsWith VALUES ("yeet@email","oldman@email","letsconnect.com");
@@ -53,4 +53,3 @@ insert into QuestionThree values ("rudy@email","data analytics");
 insert into QuestionThree values ("schlop@email","english");
 insert into QuestionThree values ("bingbong@email","math");
 insert into QuestionThree values ("may@email","chemistry");
-

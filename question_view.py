@@ -7,47 +7,32 @@ question_view = Blueprint('question_view', __name__, template_folder='templates'
 
 @question_view.route('/question/<questionid>/<user>', methods=["POST", "GET"])
 def view_question(questionid, user):
-    connection = sqlite3.connect('database/2468')
-    cursor = connection.cursor()
-    question = get_question(questionid)
-    if not question:
-        return "<i>page not found</i>"
-    responses = get_answers(questionid)
-    if user not in ("viewer", "moderator", "expert"):
-        return "<i>page not found</i>"
     if request.method=="POST":
         if user == "moderator":
             if "delete_question" in request.form.keys():
-                cursor.execute("DELETE FROM QuestionFour WHERE id = ?", [questionid]) #Delete the question from the database.
-                cursor.execute("DELETE FROM RespondsTo WHERE id = ?", [questionid])   #Delete the answers for the question, too.
-                connection.commit()
-                connection.close()
+                delete_question(questionid)
                 return redirect(url_for('list_questions.display', user=user))
-            if "publish_question" in request.form.keys():
-                cursor.execute("UPDATE QuestionFour SET published = ? WHERE id = ?", [True, questionid]) #Update question text and publish.
-                question = cursor.execute('SELECT * FROM QuestionFour WHERE id = ?', [questionid]).fetchone() #Refresh the question so they can see the changes they made.
-                connection.commit()
-                connection.close()
-            if "unpublish_question" in request.form.keys():
-                cursor.execute("UPDATE QuestionFour SET published = ? WHERE id = ?", [False, questionid]) #Update question text and publish.
-                question = cursor.execute('SELECT * FROM QuestionFour WHERE id = ?', [questionid]).fetchone() #Refresh the question so they can see the changes they made.
-                connection.commit()
-                connection.close()
+            if "publish_question" in request.form.keys() or "unpublish_question" in request.form.keys():
+                toggle_published(questionid)
             if "edit_question" in request.form.keys():
                 return redirect(url_for("edit.edit_question", questionid=questionid))
             if "delete_answer" in request.form.keys():
-                return "delete answer" #WIP
-            #Do not return here. Continue to serve the template like normal, so the user can see their own edits applied.
+                answerid = int(request.form["which_answer"])
+                delete_answer(answerid)
         elif user == "expert":
             answer_text = request.form["answer_text"]
             timestamp = datetime.datetime.now().strftime("%Y-%m-%d")
             email = request.form["email"]
             cursor.execute("DELETE FROM RespondsTo WHERE (responder_email, id) = (?, ?)", [email, questionid]) #If they already answered, replace their old answer with the new one.
-            cursor.execute("INSERT INTO RespondsTo VALUES (?,?,?,?)", [email, timestamp, questionid, answer_text]) #Whether or not they already answered, add the new answer to the database.
-            responses = cursor.execute('SELECT * FROM RespondsTo WHERE id = ?', [questionid]).fetchall() #Refresh responses so they can see the changes they made.
+            cursor.execute("INSERT INTO RespondsTo (responder_email, date_responded, id, answer) VALUES (?,?,?,?)", [email, timestamp, questionid, answer_text]) #Whether or not they already answered, add the new answer to the database.
             connection.commit()
             connection.close()
-            #Do not return here. Continue to serve the template like normal, so the user can see their own answer added.
         else:
             raise RuntimeError("Unexpected POST for /question/{}/{}".format(questionid, user))
+    question = get_question(questionid)
+    responses = get_answers(questionid)
+    if not question:
+        return "<i>page not found</i>"
+    if user not in ("viewer", "moderator", "expert"):
+        return "<i>page not found</i>"
     return render_template('question_view.html', question=question, answers=responses, user=user, back_url=url_for('list_questions.display', user=user))
