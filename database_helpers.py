@@ -1,4 +1,5 @@
 import sqlite3
+import datetime
 from flask import redirect, url_for
 
 def get_question(questionid):
@@ -30,6 +31,15 @@ def toggle_published(questionid):
     connection = sqlite3.connect('database/2468')
     cursor = connection.cursor()
     cursor.execute("UPDATE QuestionFour SET published = NOT published WHERE id = ?", [questionid]) #If published, unpublish. If unpublished, publish.
+    connection.commit()
+    connection.close()
+
+def update_answer(questionid, email, answer_text):
+    connection = sqlite3.connect('database/2468')
+    cursor = connection.cursor()
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d")
+    cursor.execute("DELETE FROM RespondsTo WHERE (responder_email, id) = (?, ?)", [email, questionid]) #If they already answered, replace their old answer with the new one.
+    cursor.execute("INSERT INTO RespondsTo (responder_email, date_responded, id, answer) VALUES (?,?,?,?)", [email, timestamp, questionid, answer_text]) #Whether or not they already answered, add the new answer to the database.
     connection.commit()
     connection.close()
 
