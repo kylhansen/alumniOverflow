@@ -11,13 +11,42 @@
       transition: 0.3s;
       height: 7vh;
     }
+    .button{
+    	padding: 10px 15px;
+  		text-align: center;
+        display: inline-block;
+    }
+    .boxes{
+    	width: 70%;
+        height: 30px;
+    }
+    #dropdown{
+    
+    }
   </style>
   
   <body>
     <div class= "topnav">
-      <h3>Hello Moderator. Please make your edits to the question and save changes.</h3>
+      <h3 style= "color: white; margin: 5px;">Hello Moderator. Please make your edits to the question and save your changes.</h3>
     </div>
+    <center>
+    <h4>Question: Question should go here</h4>
+    <form>
+    <label for= "inputbox">Please type the question, with the changes you've made into the text box.</label><br>
+    <input class= boxes type= "text" id= "inputbox">
+    <br><br>
+    <label for= "dropdown">If you would like to add a category for the question please choose one from the menu</label>
+    <select class= boxes name= "categories" id= "dropdown">
+    	<option value="" selected hidden>-Categories-</option>
+    	<option name= "temp" value= "Temporary" >Temporary</option>
+    </select>
+    </form><br>
+    <br>
+    <button class= button type= "submit" value = "save" name="button">Save</button>
+    <button class= button type = "submit" value= "cancel" name= "buttondos">Cancel</button>
+  	</center>
   </body>
   
   
 </html>
+
