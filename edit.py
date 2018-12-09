@@ -31,5 +31,5 @@ def edit_question(questionid):
 
     #render the template for the edit page (currently just a temp file)
     categories = get_categories()
-    return render_template('temp.html', old_category=old_category, old_text=old_text, categories=categories)
+    return render_template('edit_questions.html', old_category=old_category, old_text=old_text, categories=categories)
 
