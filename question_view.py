@@ -1,5 +1,3 @@
-import sqlite3
-import datetime
 from database_helpers import *
 from flask import Blueprint, render_template, request, redirect, url_for
 
@@ -21,12 +19,8 @@ def view_question(questionid, user):
                 delete_answer(answerid)
         elif user == "expert":
             answer_text = request.form["answer_text"]
-            timestamp = datetime.datetime.now().strftime("%Y-%m-%d")
             email = request.form["email"]
-            cursor.execute("DELETE FROM RespondsTo WHERE (responder_email, id) = (?, ?)", [email, questionid]) #If they already answered, replace their old answer with the new one.
-            cursor.execute("INSERT INTO RespondsTo (responder_email, date_responded, id, answer) VALUES (?,?,?,?)", [email, timestamp, questionid, answer_text]) #Whether or not they already answered, add the new answer to the database.
-            connection.commit()
-            connection.close()
+            update_answer(questionid, email, answer_text)
         else:
             raise RuntimeError("Unexpected POST for /question/{}/{}".format(questionid, user))
     question = get_question(questionid)
