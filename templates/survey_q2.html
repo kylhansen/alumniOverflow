@@ -1,13 +1,68 @@
 <!DOCTYPE html>
+<html>
+  <head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  </head>
+
+   <style media="screen">
+
+
+
+#topnavid{
+  overflow: hidden;
+  background-color: #2d3246;
+  /*background: linear-gradient(to bottom right, #001333, #00276b);*/
+  transition: 0.3s;
+  height: 7vh;
+}
+
+.maindiv{
+  border-radius: 40px;
+  margin-top: 5vh;
+  width: 60%;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.maindiv textarea {
+  width: 90%;
+  height: 15vh;
+}
+
+#submit{
+  background-color:#5cbf2a;
+        border-radius:28px;
+        border:1px solid #20b347;
+        display:inline-block;
+        cursor:pointer;
+        color:#ffffff;
+        font-family:Arial;
+        font-size:17px;
+        font-weight:bold;
+        padding: 15px 30px;
+        text-decoration:none;
+        text-shadow:0px 1px 0px #2f6627;
+  transition: .2s;
+}
+
+  </style>
+
+  <center>
+<body>
+
+  <div class="topnav" id="topnavid">
+    <h5 style="color: white; margin:4px"> </h5>
+    </div>
+
 <script>
-    
+
     // Removes an item in one select box from the other select boxes
     function removeSelected() {
         var box1 = document.getElementsByName("1")[0];
         var box2 = document.getElementsByName("2")[0];
         var box3 = document.getElementsByName("3")[0];
         var box4 = document.getElementsByName("4")[0];
-        
+
         var id1 = box1.selectedIndex;
         var id2 = box2.selectedIndex;
         var id3 = box3.selectedIndex;
@@ -39,9 +94,9 @@
 
 </script>
 
-<h1> 
+<h4>
 Of the boxes you checked just now, which ones are you most likely to focus on in the next 5 years? Please select between 1 to 4 of these items:
-</h1>
+</h4>
 
 
 
@@ -74,7 +129,7 @@ Of the boxes you checked just now, which ones are you most likely to focus on in
         {% endfor %}
     </select><br>
 </div>
-
+<br>
 <input type="submit" value="Submit">
 </form>
 
