@@ -18,25 +18,27 @@
     }
     .boxes{
     	width: 70%;
-        height: 30px;
+        height: 100px;
+        margin-left: 30px;
     }
     #dropdown{
-    	  width: 70%;
+    	  width: 71%;
         height: 30px;
+        margin-left: 58px;
     }
   </style>
   
   <body>
-    <div class= "topnav">
-      <h3 style= "color: white; margin: 5px;">Hello Moderator. Please make your edits to the question and/or category and save your changes.</h3>
-    </div>
+    
     <center>
     <form method="POST">
-    <label for= "inputbox">Question text:</label><br>
+    <h3 style= "margin: 5px;">Hello Moderator. Please make your edits to the question and/or category and save your changes.</h3>
+    <br>
+    <label for= "inputbox">Question text:</label>
     <input class=boxes type="textarea" name= "question_text" value="{{ old_text }}">
     <br><br>
     <label for= "dropdown">Category:</label>
-    <select class= boxes name= "category">
+    <select id= dropdown name= "category">
         {% for category in categories %}
             <option value="{{ category[0] }}" {% if category[0]==old_category %} selected {% endif %}>
             {{ category[0] }}
@@ -53,4 +55,3 @@
   
   
 </html>
-
