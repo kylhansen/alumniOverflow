@@ -1,3 +1,9 @@
+:root {
+  --primary-color: #55BEBE;
+  --text-color: #E8FFFF;
+  --hover-color: #AACCCC;
+}
+
 body {
   font-family: arial;
   font-size: 16px;
@@ -28,22 +34,22 @@ ol {
   margin: 0px 12px;
 }
 .block {
-  background: #EAEAFA;
+  background: var(--text-color);
   padding: 10px 24px;
   margin: 12px 0px;
   border-radius: 8px;
 }
 .titlebar {
-  background-color: #4C50AF;
-  border: none;
-  padding: 28px 24px;
-  margin: 0px;
-  color: #EAEAFA;
+  background-color: var(--primary-color);
+  color: var(--text-color);
   font-size: 28px;
+  border: none;
+  padding: 14px 24px;
+  margin: 0px;
 }
 .button {
-  background-color: #4C50AF;
-  color: #EAEAFA;
+  background-color: var(--primary-color);;
+  color: var(--text-color);
   padding: 3px 6px;
   text-align: center;
   text-decoration: none;
@@ -52,7 +58,7 @@ ol {
   border: none;
 }
 .button:hover {
-  color: #C5C5DA;
+  color: var(--hover-color);
 }
 .button_submit {
   padding: 6px 10px;
@@ -60,5 +66,6 @@ ol {
 }
 .button_toolbar {
   font-size: 16px;
-  margin: 0px 24px;
+  margin: 24px 24px;
+  position: absolute;
 }
