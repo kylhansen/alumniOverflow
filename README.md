@@ -1,6 +1,10 @@
 # alumniOverflow
 
 # TODO
+  * Unify style
+  * Fix alignment for checkboxes
+    * Survey_q1
+    * Survey_q3
 
 # SETUP
   * Install SQLite
