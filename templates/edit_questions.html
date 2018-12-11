@@ -1,56 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
-  
-  <head></head>
+<html>
 
-  <style>
-    body{}
-    .topnav{
-      overflow: hidden;
-      background-color: #2d3246;
-      transition: 0.3s;
-      height: 7vh;
-    }
-    .button{
-    	padding: 10px 15px;
-  		text-align: center;
-      display: inline-block;
-    }
-    .boxes{
-    	width: 70%;
-        height: 30px;
-    }
-    #dropdown{
-    	  width: 70%;
-        height: 30px;
-    }
-  </style>
-  
-  <body>
-    <div class= "topnav">
-      <h3 style= "color: white; margin: 5px;">Hello Moderator. Please make your edits to the question and/or category and save your changes.</h3>
-    </div>
-    <center>
-    <form method="POST">
-    <label for= "inputbox">Question text:</label><br>
-    <input class=boxes type="textarea" name= "question_text" value="{{ old_text }}">
-    <br><br>
-    <label for= "dropdown">Category:</label>
-    <select class= boxes name= "category">
-        {% for category in categories %}
-            <option value="{{ category[0] }}" {% if category[0]==old_category %} selected {% endif %}>
-            {{ category[0] }}
-            </option>
-        {% endfor %}
-    </select>
-    <br>
-    <br>
-    <input class= button type= "submit" value = "Save" name="save">
-    <input class= button type = "submit" value= "Cancel" name= "cancel">
-  	</form>
-    </center>
-  </body>
-  
-  
+<head>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
+</head>
+
+<body>
+
+<div class="titlebar">
+  <img src="{{ url_for('static',filename='logo.svg') }}" alt="2468" style="width:101px;height:64px;">
+</div>
+
+<div class="content">
+<form method="POST">
+  <h2>Please make your edits to the question and/or category and save your changes.</h3>
+  <textarea name="question_text" rows="14" cols="72" wrap="soft">{{ old_text }}</textarea>
+  <br><br>
+  <label for= "dropdown">Category:</label>
+  <select id= dropdown name= "category">
+      {% for category in categories %}
+          <option value="{{ category[0] }}" {% if category[0]==old_category %} selected {% endif %}>
+          {{ category[0] }}
+          </option>
+      {% endfor %}
+  </select>
+  <br>
+  <br>
+  <input class="button_submit button" type="submit" value ="Save" name="save">
+  <input class="button_submit button" type="submit" value="Cancel" name="cancel">
+</form>
+</div>
+
+</body>
 </html>
-
