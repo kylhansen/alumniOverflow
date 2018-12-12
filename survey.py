@@ -8,8 +8,9 @@ from flask import Blueprint, session, render_template, request, redirect, url_fo
 
 survey = Blueprint('survey', __name__, template_folder='templates')
 
-@survey.route('/survey_q0', methods=["POST", "GET"])
-def survey_q0(valid_input=True):
+@survey.route('/survey_q0', defaults={'valid_email':True},  methods=["POST", "GET"])
+@survey.route('/survey_q0/<valid_email>',  methods=["POST", "GET"])
+def survey_q0(valid_email):
     # Collect responses on personal information
     if request.method=="POST":
         # TODO: if needed, put in database here.
@@ -27,9 +28,10 @@ def survey_q0(valid_input=True):
 
         c.execute('select email from participants where email = ?', [email])
         if c.fetchone() != None:
+            valid_email=False
             c.close()
             conn.close()
-            return redirect(url_for('survey.survey_q0', valid_input=False))
+            return redirect(url_for('survey.survey_q0', valid_email=valid_email))
 
         c.close()
         conn.close()
@@ -42,11 +44,10 @@ def survey_q0(valid_input=True):
         session['grad_year'] = grad_year
         session['majors'] = majors
 
-
-        return redirect(url_for('survey.survey_q1', valid_input=True))
+        return redirect(url_for('survey.survey_q1'))
 
     # Render demographic/personal information question
-    return render_template('survey_q0.html')
+    return render_template('survey_q0.html', valid_email=valid_email)
 
 @survey.route('/survey_q1', methods=["POST", "GET"])
 def survey_q1():
