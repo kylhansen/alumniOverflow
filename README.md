@@ -1,8 +1,5 @@
 # alumniOverflow
 
-# TODO
-  * All finished!
-
 # SETUP
   * Install SQLite
   * To access database, in "database" directory, type the following:
@@ -18,15 +15,14 @@
   * Extra:
     * Execute ".read populate.sql" to fill tables with test data
     * Execute ".read dropschema.sql" to remove all tables
-  * When finished with the app, remove all data and drop tables by executing ".read dropschema.sql"
     
 # PYTHON
   * app.py
-    * To begin a local session, in terminal execute the following command from the main directory:
+    * To begin hosting a session, in terminal execute the following command from the main directory:
       ```
       python app.py
       ```  
-    * Home page
+    * Navigates from the home page to one of the links displayed
   * survey.py
   * list_questions.py
     * Lists all questions under the appropriate category in the database
