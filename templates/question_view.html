@@ -44,7 +44,7 @@
   {% for answer in answers %}
   <div class="block">
   <li>
-    <pre>{{ answer[4] }}</pre>
+    {{ answer[4] }}<br>
     <i>answered by {{ answer[1] }}</i><br>
     <i>on {{ answer[2] }}</i><br>
     {% if user == "moderator" %}

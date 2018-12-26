@@ -35,7 +35,7 @@ def display(user):
     for category in curs1.execute('SELECT category FROM Categories;'):
         curs2 = conn.cursor()
         if user != 'moderator':
-            published = 'AND published=True'
+            published = 'AND published'
         else:
             published = ''
         for row in curs2.execute('SELECT email, category, question, id, published FROM QuestionFour WHERE category = ?' + published + ';', category):
